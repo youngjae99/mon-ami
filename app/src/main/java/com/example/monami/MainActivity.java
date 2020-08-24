@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         viewPagerAdapter.addFragment(fragment3, "");
         viewPager.setAdapter(viewPagerAdapter);
 
-        tabLayout.getTabAt(0).setIcon(R.drawable.ic_menu1);
+        tabLayout.getTabAt(0).setIcon(R.drawable.ic_home);
         tabLayout.getTabAt(1).setIcon(R.drawable.ic_menu2);
         tabLayout.getTabAt(2).setIcon(R.drawable.ic_menu3);
     }
@@ -110,4 +110,16 @@ public class MainActivity extends AppCompatActivity {
             return fragmentTitle.get(position);
         }
     }
+/*
+    public void SetStatusBarColor(System.Drawing.Color color, bool darkStatusBarTint)
+    {
+        if (Build.VERSION.SdkInt < Android.OS.BuildVersionCodes.Lollipop)
+            return;
+
+        var activity = Plugin.CurrentActivity.CrossCurrentActivity.Current.Activity;
+        var window = activity.Window;
+        window.AddFlags(Android.Views.WindowManagerFlags.DrawsSystemBarBackgrounds);
+        window.ClearFlags(Android.Views.WindowManagerFlags.TranslucentStatus);
+        window.SetStatusBarColor(color.ToPlatformColor());
+    }*/
 }
