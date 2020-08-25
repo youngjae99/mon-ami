@@ -44,9 +44,7 @@ public class Fragment1 extends Fragment {
                 Log.d("add","clicked");
 
                 Intent newRecordIntent = new Intent(v.getContext(), NewRecord.class);
-                //newRecordIntent.putExtra("user_email", "test");
                 startActivity(newRecordIntent);
-                //getActivity();//.overridePendingTransition(R.anim.slide_up, R.anim.slide_up);
             }
         });
 

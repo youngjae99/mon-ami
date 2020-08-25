@@ -1,10 +1,12 @@
 package com.example.monami;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -30,7 +32,13 @@ public class NewRecord extends AppCompatActivity {
             }
         });
 
-
+        TextView saveBtn = (TextView)findViewById(R.id.save_btn);
+        saveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("saveButton","pressed");
+            }
+        });
     }
 
     @Override
