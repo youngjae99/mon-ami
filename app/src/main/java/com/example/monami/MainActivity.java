@@ -1,6 +1,5 @@
 package com.example.monami;
 
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -9,7 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -47,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         fragment3 = new Fragment3();
 
         tabLayout.setupWithViewPager(viewPager);
+        /*
         tabLayout.addOnTabSelectedListener(
                 new TabLayout.ViewPagerOnTabSelectedListener(viewPager) {
                     @Override
@@ -68,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
                         super.onTabReselected(tab);
                     }
                 }
-        );
+        );*/
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), 0);
         viewPagerAdapter.addFragment(fragment1, "");

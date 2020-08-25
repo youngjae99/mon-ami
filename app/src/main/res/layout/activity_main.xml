@@ -55,6 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_gravity="bottom"
+            app:tabIconTint="@color/tab_color_selector"
             app:tabTextColor="@color/white">
 
             <com.google.android.material.tabs.TabItem
