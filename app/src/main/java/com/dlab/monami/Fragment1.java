@@ -1,12 +1,17 @@
-package com.example.monami;
+package com.dlab.monami;
 
+import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class Fragment1 extends Fragment {
     public Fragment1() {
@@ -26,8 +31,17 @@ public class Fragment1 extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
+
+    String TAG = "PJ2 PhoneFragment";
+
+    RecyclerView recyclerView;                              // 갤러리 출력될 recyclerView
+    RecyclerView.LayoutManager layoutManager;
+
+    Button addBtn;
+
+    Cursor cursor;                                          // 갤러리 이미지 탐색
+    RecodeAdapter phoneAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,6 +49,22 @@ public class Fragment1 extends Fragment {
         // Inflate the layout for this fragment
         Log.d("Fragment1","onCreateView");
         final View v = inflater.inflate(R.layout.fragment1, container, false);
+
+        recyclerView = v.findViewById(R.id.recyclerView);
+        addBtn = v.findViewById(R.id.add);
+
+        layoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(layoutManager);
+
+        addBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(getContext(), SelectActivity.class);
+                getContext().startActivity(intent);
+
+            }
+        });
 
         return v;
     }
