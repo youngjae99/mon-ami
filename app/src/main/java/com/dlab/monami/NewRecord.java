@@ -1,20 +1,33 @@
 package com.dlab.monami;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.storage.StorageReference;
 
 public class NewRecord extends AppCompatActivity {
 
     ImageButton backButton, datePickButton;
     ImageButton imgUploadButton;
+
+    //image
+    private static final int PICK_IMAGE=777;
+    private StorageReference mStorageRef;
+    Uri currentImageUri;
+    boolean check;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +56,26 @@ public class NewRecord extends AppCompatActivity {
                 Log.d("saveButton","pressed");
             }
         });
+
+        ImageButton image=(ImageButton)findViewById(R.id.imguploadbtn);
+        image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+                startActivityForResult(gallery,PICK_IMAGE);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==PICK_IMAGE){
+            ImageView img = (ImageView) findViewById(R.id.imguploadbtn);
+            currentImageUri = data.getData();
+            check=true;
+            img.setImageURI(currentImageUri);
+        }
     }
 
     @Override

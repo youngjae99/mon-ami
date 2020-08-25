@@ -18,6 +18,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:orientation="horizontal">
             <ImageButton
                 android:id="@+id/backbtn"
@@ -44,7 +46,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_alignParentRight="true"
-                android:padding="15dp"
+                android:padding="18dp"
                 android:src="@drawable/ic_down_arrow"
                 android:scaleType="fitCenter"
                 android:tint="@color/color1"
@@ -58,13 +60,44 @@
             android:layout_height="50dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+            android:layout_marginBottom="16dp"
             android:ems="10"
-            android:paddingLeft="20dp"
-            android:hint="Title"
+            android:paddingLeft="16dp"
+            android:hint="제목을 입력해주세요"
             android:textColor="@color/color1"
             android:inputType="textEmailAddress"
             android:background="@drawable/titleborderbox"
             />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/titleborderbox">
+            <EditText
+                android:id="@+id/input_symptom"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_toLeftOf="@+id/search_btn"
+                android:paddingLeft="16dp"
+                android:hint="증상 추가하기"
+                android:textColor="@color/color1"
+                android:inputType="textEmailAddress"
+                android:background="@android:color/transparent"
+                />
+            <ImageButton
+                android:id="@+id/search_btn"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginRight="15dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_search"
+                android:scaleType="fitCenter"
+                android:tint="@color/linegray"
+                android:background="@android:color/transparent"
+                />
+        </RelativeLayout>
 
         <Spinner
             android:id="@+id/symptoms_spinner"
@@ -86,21 +119,20 @@
                 android:id="@+id/imguploadbtn"
                 android:layout_width="match_parent"
                 android:layout_height="130dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="16dp"
                 android:src="@drawable/ic_photo"
                 android:background="@drawable/dashborderbox"
                 android:tint="@color/linegray"/>
-
 
             <EditText
                 android:id="@+id/input_comment"
                 android:layout_width="match_parent"
                 android:layout_height="130dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginBottom="20dp"
                 android:ems="10"
                 android:paddingLeft="20dp"
@@ -116,7 +148,7 @@
             android:id="@+id/save_btn"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="16dp"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
