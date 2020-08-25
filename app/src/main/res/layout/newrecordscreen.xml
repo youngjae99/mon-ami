@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".NewRecord"
     android:orientation="vertical"
-    android:background="@android:color/transparent"
+    android:background="@color/color2"
     android:gravity="center_horizontal">
 
     <LinearLayout
@@ -15,7 +15,7 @@
         android:gravity="center_horizontal"
         android:backgroundTint="@color/color4">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -26,12 +26,26 @@
                 android:text="Back" />
 
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/dateselected"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerInParent="true"
                 android:textSize="20dp"
                 android:textColor="@color/color1"
                 android:text="2020년 8월 25일" />
-        </LinearLayout>
+
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"
+                android:padding="15dp"
+                android:src="@drawable/ic_down_arrow"
+                android:scaleType="fitCenter"
+                android:tint="@color/color1"
+                android:background="@android:color/transparent"
+                />
+        </RelativeLayout>
 
         <EditText
             android:id="@+id/input_title"
@@ -60,22 +74,33 @@
             android:orientation="vertical"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:background="@color/color4">
+            android:background="@drawable/borderbox">
 
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/ic_photo"
+                android:id="@+id/imagebtn"
+                android:background="@drawable/dashborderbox"/>
 
 
             <EditText
                 android:id="@+id/input_comment"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="150dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
                 android:ems="10"
                 android:paddingLeft="20dp"
                 android:hint="어떤 일이 있었나요?"
                 android:textColor="@color/color1"
                 android:inputType="textEmailAddress"
+                android:background="@drawable/dashborderbox"
                 />
         </LinearLayout>
 

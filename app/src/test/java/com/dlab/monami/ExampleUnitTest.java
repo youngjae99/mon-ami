@@ -1,4 +1,4 @@
-package com.example.monami;
+package com.dlab.monami;
 
 import org.junit.Test;
 
