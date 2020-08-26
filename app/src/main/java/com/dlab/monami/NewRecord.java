@@ -16,18 +16,27 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-public class NewRecord extends AppCompatActivity {
 
+public class NewRecord extends AppCompatActivity {
+    //Firebase ------------------------------
+    private DatabaseReference mPostReference;
+    static String title="", symptom="", img="", comment="", recordtime="";
+
+    //xml layout ----------------------------
     ImageButton backButton, datePickButton;
     ImageButton imgUploadButton;
 
-    //image
+    //image ---------------------------------
     private static final int PICK_IMAGE=777;
     private StorageReference mStorageRef;
     Uri currentImageUri;
     boolean check;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +45,9 @@ public class NewRecord extends AppCompatActivity {
         backButton = (ImageButton) findViewById(R.id.backbtn);
         datePickButton = (ImageButton) findViewById(R.id.downbtn);
         imgUploadButton = (ImageButton) findViewById(R.id.imguploadbtn);
+
+        mPostReference= FirebaseDatabase.getInstance().getReference();
+        mStorageRef= FirebaseStorage.getInstance().getReference("Images");
 
         Spinner spinner = (Spinner) findViewById(R.id.symptoms_spinner); // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.my_array, android.R.layout.simple_spinner_item); // Specify the layout to use when the list of choices appears
