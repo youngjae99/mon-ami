@@ -15,8 +15,19 @@
     <color name="color2">#F4F6FB</color>
     <color name="color3">#E8ECFB</color>
     <color name="color4">#F0F0F3</color>
+
     <color name="linegray">#B1B1B2</color>
 
 
+
+
+    <color name="itemBG">#E8ECFA</color>
+    <color name="myGrayLight">#EAEDF3</color>
+    <color name="myGrayMiddle">#C0C3C8</color>
+    <color name="myDarkLight">#353C59</color>
+    <color name="myDarkDeep">#21263A</color>
+    <color name="myBlue">#96B3FF</color>
+    <color name="myRed">#FE9599</color>
+    <color name="myRedLight">#FFCACE</color>
 </resources>
 

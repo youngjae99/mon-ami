@@ -51,15 +51,15 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onTabSelected(TabLayout.Tab tab) {
                         super.onTabSelected(tab);
-                        int tabIconColor = ContextCompat.getColor(context, R.color.black);
-                        tab.getIcon().setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN);
+//                        int tabIconColor = ContextCompat.getColor(context, R.color.black);
+//                        tab.getIcon().setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN);
                     }
 
                     @Override
                     public void onTabUnselected(TabLayout.Tab tab) {
                         super.onTabUnselected(tab);
-                        int tabIconColor = ContextCompat.getColor(context, R.color.tab_gray);
-                        tab.getIcon().setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN);
+//                        int tabIconColor = ContextCompat.getColor(context, R.color.tab_gray);
+//                        tab.getIcon().setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN);
                     }
 
                     @Override
