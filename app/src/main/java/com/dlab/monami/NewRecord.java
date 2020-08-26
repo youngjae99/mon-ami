@@ -21,6 +21,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+
 
 public class NewRecord extends AppCompatActivity {
     //Firebase ------------------------------
@@ -54,6 +59,7 @@ public class NewRecord extends AppCompatActivity {
 //        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // Apply the adapter to the spinner
 //        spinner.setAdapter(adapter);
 
+        // BackButton -------------------------------------------
         backButton.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,6 +72,10 @@ public class NewRecord extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d("saveButton","pressed");
+
+                Date currentTime = Calendar.getInstance().getTime();
+                String date_text = new SimpleDateFormat("yyyy년 MM월 dd일 EE요일 HH:mm:ss", Locale.getDefault()).format(currentTime);
+                Log.d("webnautes", date_text);
             }
         });
 
@@ -78,12 +88,24 @@ public class NewRecord extends AppCompatActivity {
             }
         });
 
-        String[] countryNames = {"Korea", "Kenya", "India", "China", "Australia", "New Zealand", "England", "Pakistan"};
         ArrayAdapter symptom_adapter = ArrayAdapter.createFromResource(this, R.array.my_array, android.R.layout.simple_spinner_item);
 
-        AutoCompleteTextView autoTextView = (AutoCompleteTextView) findViewById(R.id.input_symptom);
+        final AutoCompleteTextView autoTextView = (AutoCompleteTextView) findViewById(R.id.input_symptom);
         autoTextView.setAdapter(symptom_adapter);
         autoTextView.setThreshold(1);
+        autoTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                autoTextView.showDropDown();
+            }
+        });
+        ImageButton downbtn=(ImageButton)findViewById(R.id.search_btn);
+        downbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                autoTextView.showDropDown();
+            }
+        });
 
     }
 
