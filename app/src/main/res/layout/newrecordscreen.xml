@@ -21,7 +21,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:orientation="horizontal">
-            
+
             <ImageButton
                 android:id="@+id/backbtn"
                 android:layout_width="50dp"
@@ -75,7 +75,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/titleborderbox">
-            <EditText
+            <AutoCompleteTextView
                 android:id="@+id/input_symptom"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -85,6 +85,7 @@
                 android:textColor="@color/color1"
                 android:inputType="textEmailAddress"
                 android:background="@android:color/transparent"
+                android:drawableLeft="@drawable/ic_search"
                 />
             <ImageButton
                 android:id="@+id/search_btn"

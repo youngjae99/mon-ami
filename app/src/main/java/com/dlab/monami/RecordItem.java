@@ -2,13 +2,13 @@ package com.dlab.monami;
 
 import androidx.annotation.NonNull;
 
-class RecodeItem {
+class RecordItem {
     private int Id;
     private String Time;
     private String Writer;
     //private boolean isSelected;
 
-    public RecodeItem(int _Id, String _Time, String _Writer)
+    public RecordItem(int _Id, String _Time, String _Writer)
     {
         this.Id = _Id;
         this.Time = _Time;

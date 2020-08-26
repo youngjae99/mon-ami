@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.fragment.app.Fragment;
@@ -42,7 +41,7 @@ public class Fragment1 extends Fragment {
     ImageButton addBtn;
 
     Cursor cursor;                                          // 갤러리 이미지 탐색
-    RecodeAdapter phoneAdapter;
+    RecordAdapter phoneAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
