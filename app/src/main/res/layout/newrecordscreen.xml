@@ -85,7 +85,6 @@
                 android:textColor="@color/color1"
                 android:inputType="textEmailAddress"
                 android:background="@android:color/transparent"
-                android:drawableLeft="@drawable/ic_search"
                 />
             <ImageButton
                 android:id="@+id/search_btn"

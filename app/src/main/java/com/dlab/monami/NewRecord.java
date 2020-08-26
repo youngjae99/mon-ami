@@ -7,10 +7,10 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -49,10 +49,10 @@ public class NewRecord extends AppCompatActivity {
         mPostReference= FirebaseDatabase.getInstance().getReference();
         mStorageRef= FirebaseStorage.getInstance().getReference("Images");
 
-        Spinner spinner = (Spinner) findViewById(R.id.symptoms_spinner); // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.my_array, android.R.layout.simple_spinner_item); // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // Apply the adapter to the spinner
-        spinner.setAdapter(adapter);
+//        Spinner spinner = (Spinner) findViewById(R.id.symptoms_spinner); // Create an ArrayAdapter using the string array and a default spinner layout
+//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.my_array, android.R.layout.simple_spinner_item); // Specify the layout to use when the list of choices appears
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // Apply the adapter to the spinner
+//        spinner.setAdapter(adapter);
 
         backButton.setOnClickListener(new Button.OnClickListener() {
             @Override
@@ -77,6 +77,14 @@ public class NewRecord extends AppCompatActivity {
                 startActivityForResult(gallery,PICK_IMAGE);
             }
         });
+
+        String[] countryNames = {"Korea", "Kenya", "India", "China", "Australia", "New Zealand", "England", "Pakistan"};
+        ArrayAdapter symptom_adapter = ArrayAdapter.createFromResource(this, R.array.my_array, android.R.layout.simple_spinner_item);
+
+        AutoCompleteTextView autoTextView = (AutoCompleteTextView) findViewById(R.id.input_symptom);
+        autoTextView.setAdapter(symptom_adapter);
+        autoTextView.setThreshold(1);
+
     }
 
     @Override

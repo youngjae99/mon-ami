@@ -58,10 +58,8 @@ public class Fragment1 extends Fragment {
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                Intent intent = new Intent(getContext(), SelectActivity.class);
+                Intent intent = new Intent(getContext(), NewRecord.class);
                 getContext().startActivity(intent);
-
             }
         });
 
