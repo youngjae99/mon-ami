@@ -21,7 +21,8 @@ public class SelectActivity extends AppCompatActivity {
         recodeAct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Fragment1.class);
+                Intent intent = new Intent(getApplicationContext(), NewRecord.class);
+
                 startActivity(intent);
 
             }
