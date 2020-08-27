@@ -100,7 +100,7 @@ public class Fragment1 extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 // 디비를 가져오던중 에러 발생 시
-                Log.e("Fraglike", String.valueOf(databaseError.toException())); // 에러문 출력
+                Log.e("Fragment1", String.valueOf(databaseError.toException())); // 에러문 출력
             }
         });
         adapter = new RecordAdapter(arrayList, getContext());
@@ -121,11 +121,6 @@ public class Fragment1 extends Fragment {
                     FirebasePost get=postSnapshot.getValue(FirebasePost.class);
                     String[] info={get.time,get.writer};
                     RecordItem result= new RecordItem(info[0],info[1]); //수정 !!!
-
-                    title = get.title;
-                    symptom = get.symptom;
-                    img = get.img;
-                    comment = get.comment;
 
                     arrayList.add(result);
                     Log.d("getFirebaseDatabase","key: "+key);

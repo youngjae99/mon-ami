@@ -27,10 +27,10 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.RecordView
     }
     private OnListItemSelectedInterface mListener;
 
-    public RecordAdapter(ArrayList<RecordItem> arrayList, Context context, OnListItemSelectedInterface listener) {
+    public RecordAdapter(ArrayList<RecordItem> arrayList, Context context) {
         this.arrayList = arrayList;
         this.context = context;
-        this.mListener = listener;
+//        this.mListener = listener;
     }
 
     @NonNull
@@ -67,17 +67,17 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.RecordView
             this.tv_time = itemView.findViewById(R.id.tv_time);
             this.tv_writer = itemView.findViewById(R.id.tv_writer);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v){
-                    int position = getAdapterPosition();
-                    mListener.onItemSelected(v, position);
-                    Log.d("Contact", "clicked "+getAdapterPosition());
-                    //팝업으로 최애맛집
-
-
-                }
-            });
+//            itemView.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v){
+//                    int position = getAdapterPosition();
+//                    mListener.onItemSelected(v, position);
+//                    Log.d("Contact", "clicked "+getAdapterPosition());
+//                    //팝업으로 최애맛집
+//
+//
+//                }
+//            });
         }
     }
 }

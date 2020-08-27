@@ -21,5 +21,7 @@ public class FirebasePost {
         this.writer=writer;
     }
 
+    public FirebasePost(){}
+
 
 }
