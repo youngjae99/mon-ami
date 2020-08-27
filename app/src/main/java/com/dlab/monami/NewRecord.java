@@ -59,7 +59,7 @@ public class NewRecord extends AppCompatActivity {
     Uri currentImageUri;
     boolean check;
 
-
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.newrecordscreen);
@@ -125,6 +125,7 @@ public class NewRecord extends AppCompatActivity {
 
                                 //Image upload
                                 if(check){
+                                    Log.d("img","check=true");
                                     final StorageReference riverseRef=mStorageRef.child(currentImageUri.getLastPathSegment());
                                     final UploadTask uploadTask=riverseRef.putFile(currentImageUri);
                                     Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
@@ -141,10 +142,9 @@ public class NewRecord extends AppCompatActivity {
                                             if(task.isSuccessful()){
                                                 Uri downloadUri = task.getResult();
                                                 Log.d("imageLog", String.valueOf(downloadUri));
-                                                /*
                                                 img = String.valueOf(downloadUri);
                                                 setImgUrl(String.valueOf(downloadUri));
-                                                postFirebaseDatabase(true, img);*/
+                                                postFirebaseDatabase(true, img);
                                             }else{
 
                                             }
@@ -161,6 +161,11 @@ public class NewRecord extends AppCompatActivity {
                     });
                 }
             }
+            public void setImgUrl(String url){
+                img = url;
+                //this.img = url;
+                Log.d("imageLog","this img"+img);
+            }
         });
 
 
@@ -170,7 +175,7 @@ public class NewRecord extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
-                startActivityForResult(gallery,PICK_IMAGE);
+                startActivityForResult(gallery, PICK_IMAGE);
             }
         });
 
@@ -199,7 +204,7 @@ public class NewRecord extends AppCompatActivity {
         Map<String,Object> childUpdates=new HashMap<>();
         Map<String,Object> postValues=null;
         if(add){
-            FirebasePost post=new FirebasePost(title, symptom, comment, "parent");
+            FirebasePost post=new FirebasePost(title, symptom, "none", comment, "parent");
             postValues=post.toMap();
         }
         Date currentTime = Calendar.getInstance().getTime();
@@ -207,6 +212,20 @@ public class NewRecord extends AppCompatActivity {
         childUpdates.put("/patient_list/"+patient_name+"/"+date_text,postValues);
         mPostReference.updateChildren(childUpdates);
         //clearET();
+    }
+
+    public void postFirebaseDatabase(boolean add, String img){
+        Map<String,Object> childUpdates=new HashMap<>();
+        Map<String,Object> postValues=null;
+        if(add){
+            FirebasePost post=new FirebasePost(title, symptom, img, comment, "parent");
+            postValues=post.toMap();
+        }
+        Date currentTime = Calendar.getInstance().getTime();
+        String date_text = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(currentTime);
+        childUpdates.put("/patient_list/"+patient_name+"/"+date_text,postValues);
+        mPostReference.updateChildren(childUpdates);
+        clearET();
     }
 
     @Override
@@ -217,11 +236,20 @@ public class NewRecord extends AppCompatActivity {
             currentImageUri = data.getData();
             check=true;
             img.setImageURI(currentImageUri);
+            img.setScaleType(ImageView.ScaleType.FIT_CENTER);
         }
+    }
+
+    public void clearET(){
+        titleET.setText("");
+        symptomET.setText("");
+        commentET.setText("");
+        img="";
     }
 
     @Override
     public void finish() {
+        clearET();
         super.finish();
         //overridePendingTransition(R.anim.slide_down,R.anim.slide_down);
     }

@@ -6,6 +6,7 @@ import java.util.Map;
 public class FirebasePost {
     public String title; //수정
     public String symptom;
+    public String img;
     public String comment;
     public String writer;
 
@@ -13,9 +14,10 @@ public class FirebasePost {
 
     }
 
-    public FirebasePost(String title, String symptom, String comment, String writer){ //수정
+    public FirebasePost(String title, String symptom, String img, String comment, String writer){ //수정
         this.title=title;
         this.symptom=symptom;
+        this.img= img;
         this.comment=comment;
         this.writer=writer;
     }
@@ -24,6 +26,7 @@ public class FirebasePost {
         HashMap<String, Object> result=new HashMap<>();
         result.put("title",title);
         result.put("symptom",symptom);
+        result.put("img",img);
         result.put("comment",comment);
         result.put("writer",writer);
         return result;

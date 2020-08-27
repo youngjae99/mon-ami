@@ -118,8 +118,7 @@
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="16dp"
                 android:src="@drawable/ic_photo"
-                android:background="@drawable/dashborderbox"
-                android:tint="@color/linegray"/>
+                android:background="@drawable/dashborderbox" />
 
             <EditText
                 android:id="@+id/input_comment"
