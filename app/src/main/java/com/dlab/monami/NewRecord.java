@@ -43,7 +43,9 @@ import java.util.Map;
 public class NewRecord extends AppCompatActivity {
     //Firebase ------------------------------
     private DatabaseReference mPostReference;
+    static String patient_name="";
     static String title="", symptom="", img="", comment="", recordtime="";
+
 
     //xml layout ----------------------------
     ImageButton backButton, datePickButton;
@@ -61,6 +63,8 @@ public class NewRecord extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.newrecordscreen);
+
+        patient_name="hyunwoo";
 
         backButton = (ImageButton) findViewById(R.id.backbtn);
         datePickButton = (ImageButton) findViewById(R.id.downbtn);
@@ -159,6 +163,8 @@ public class NewRecord extends AppCompatActivity {
             }
         });
 
+
+        // Image button click ---------------------------------------------------------------------------
         ImageButton image=(ImageButton)findViewById(R.id.imguploadbtn);
         image.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -168,8 +174,8 @@ public class NewRecord extends AppCompatActivity {
             }
         });
 
+        // Auto complete box -------------------------------------------------------------------------
         ArrayAdapter symptom_adapter = ArrayAdapter.createFromResource(this, R.array.my_array, android.R.layout.simple_spinner_item);
-
         final AutoCompleteTextView autoTextView = (AutoCompleteTextView) findViewById(R.id.input_symptom);
         autoTextView.setAdapter(symptom_adapter);
         autoTextView.setThreshold(1);
@@ -193,12 +199,12 @@ public class NewRecord extends AppCompatActivity {
         Map<String,Object> childUpdates=new HashMap<>();
         Map<String,Object> postValues=null;
         if(add){
-            FirebasePost post=new FirebasePost(title, symptom, comment);
+            FirebasePost post=new FirebasePost(title, symptom, comment, "parent");
             postValues=post.toMap();
         }
         Date currentTime = Calendar.getInstance().getTime();
         String date_text = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(currentTime);
-        childUpdates.put("/patient_list/"+date_text,postValues);
+        childUpdates.put("/patient_list/"+patient_name+"/"+date_text,postValues);
         mPostReference.updateChildren(childUpdates);
         //clearET();
     }
