@@ -72,6 +72,7 @@ public class Fragment1 extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.getChildrenCount() > 0) {
                     getFirebaseDatabase();
+
                     
 
                 } else {
