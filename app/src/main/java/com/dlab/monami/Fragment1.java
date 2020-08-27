@@ -73,7 +73,7 @@ public class Fragment1 extends Fragment {
                 if (dataSnapshot.getChildrenCount() > 0) {
                     getFirebaseDatabase();
 
-                    
+
 
                 } else {
                     //user not found
@@ -114,10 +114,12 @@ public class Fragment1 extends Fragment {
                     String[] info={get.time, get.writer};
                     RecordItem result= new RecordItem(info[0],info[1]); //수정 !!!
 
+
                     arrayList.add(result);
                     Log.d("getFirebaseDatabase","key: "+key);
                     Log.d("getFirebaseDatabase","info: "+info[0]+" "+info[1]);
                     Log.d("ListSize",String.valueOf(arrayList.size()));
+
                 }
                 adapter.notifyDataSetChanged();
 
