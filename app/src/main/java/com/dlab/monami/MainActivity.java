@@ -75,9 +75,9 @@ public class MainActivity extends AppCompatActivity {
         viewPagerAdapter.addFragment(fragment3, "");
         viewPager.setAdapter(viewPagerAdapter);
 
-        tabLayout.getTabAt(0).setIcon(R.drawable.ic_home);
-        tabLayout.getTabAt(1).setIcon(R.drawable.ic_menu2);
-        tabLayout.getTabAt(2).setIcon(R.drawable.ic_menu3);
+        tabLayout.getTabAt(0).setIcon(R.drawable.ic_tab1);
+        tabLayout.getTabAt(1).setIcon(R.drawable.ic_tab2);
+        tabLayout.getTabAt(2).setIcon(R.drawable.ic_tab3);
     }
 
     private class ViewPagerAdapter extends FragmentPagerAdapter {
