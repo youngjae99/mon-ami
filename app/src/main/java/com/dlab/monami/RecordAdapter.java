@@ -1,6 +1,7 @@
 package com.dlab.monami;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,6 +49,7 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.RecordView
 //        Glide.with(holder.itemView)
 //                .load(arrayList.get(position).getProfile())
 //                .into(holder.iv_profile);
+        int itemposition = position;
         holder.tv_time.setText(arrayList.get(position).getTime());
         holder.tv_writer.setText(arrayList.get(position).getWriter());
     }
@@ -71,7 +73,10 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.RecordView
                 @Override
                 public void onClick(View v){
                     int position = getAdapterPosition();
-                    mListener.onItemSelected(v, position);
+                    Intent intent = new Intent(v.getContext(), RecordPopUp.class);
+                    intent.putExtra("position", position);
+                    v.getContext().startActivity(intent);
+//                    mListener.onItemSelected(v, position);
                     Log.d("Contact", "clicked "+getAdapterPosition());
                     //팝업으로 최애맛집
 
