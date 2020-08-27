@@ -1,5 +1,9 @@
 package com.dlab.monami;
 
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class FirebasePost {
     public Integer type;
     public String title;
@@ -23,5 +27,13 @@ public class FirebasePost {
 
     public FirebasePost(){}
 
-
+    public Map<String, Object> toMap(){
+        HashMap<String, Object> result=new HashMap<>();
+        result.put("title",title);
+        result.put("symptom",symptom);
+        result.put("img",img);
+        result.put("comment",comment);
+        result.put("writer",writer);
+        return result;
+    }
 }
