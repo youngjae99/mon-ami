@@ -34,6 +34,7 @@ public class FirebasePost {
         result.put("img",img);
         result.put("comment",comment);
         result.put("writer",writer);
+        result.put("time",time);
         return result;
     }
 }

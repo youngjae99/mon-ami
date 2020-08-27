@@ -1,9 +1,12 @@
 package com.dlab.monami;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -57,7 +60,7 @@ public class NewRecord extends AppCompatActivity {
     private static final int PICK_IMAGE=777;
     private StorageReference mStorageRef;
     Uri currentImageUri;
-    boolean check;
+    boolean imagecheck;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +93,32 @@ public class NewRecord extends AppCompatActivity {
         });
 
 
+        // Text change listeners -------------------------------------------
+        titleET.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+                if(titleET.getText().toString().isEmpty()){
+                    titleET.setBackgroundResource(R.drawable.titleborderbox);
+                }else {
+                    titleET.setBackgroundResource(R.drawable.titleborderbox_selected);
+                }
+            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+        });
+
+        symptomET.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+                if(symptomET.getText().toString().isEmpty()){
+                    symptomET.setBackgroundResource(R.drawable.titleborderbox);
+                }else {
+                    symptomET.setBackgroundResource(R.drawable.titleborderbox_selected);
+                }
+            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+        });
+
+
         // Save Button Click ------------------------------------
         TextView saveBtn = (TextView)findViewById(R.id.save_btn);
         saveBtn.setOnClickListener(new View.OnClickListener() {
@@ -102,7 +131,7 @@ public class NewRecord extends AppCompatActivity {
                 comment=commentET.getText().toString();
 
                 Date currentTime = Calendar.getInstance().getTime();
-                String date_text = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(currentTime);
+                final String date_text = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(currentTime);
                 Log.d("Saved time", date_text);
 
                 if(title.length()==0){
@@ -121,12 +150,13 @@ public class NewRecord extends AppCompatActivity {
                             else{ //Username not found
                                 Toast.makeText(NewRecord.this,"add success", Toast.LENGTH_SHORT).show();
 
-                                postFirebaseDatabase(true);
+                                //postFirebaseDatabase(true);
 
                                 //Image upload
-                                if(check){
+                                if(imagecheck){
                                     Log.d("img","check=true");
-                                    final StorageReference riverseRef=mStorageRef.child(currentImageUri.getLastPathSegment());
+                                    Log.d("imguri", date_text+"_"+currentImageUri.getLastPathSegment());
+                                    final StorageReference riverseRef=mStorageRef.child(date_text+"_"+currentImageUri.getLastPathSegment());
                                     final UploadTask uploadTask=riverseRef.putFile(currentImageUri);
                                     Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                                         @Override
@@ -144,14 +174,17 @@ public class NewRecord extends AppCompatActivity {
                                                 Log.d("imageLog", String.valueOf(downloadUri));
                                                 img = String.valueOf(downloadUri);
                                                 setImgUrl(String.valueOf(downloadUri));
-                                                postFirebaseDatabase(true, img);
+                                                postFirebaseDatabase(true, img, date_text);
                                             }else{
 
                                             }
                                         }
                                     });
                                 }
-                                Log.d("imageLog","this img "+img);
+                                else{ // upload with no image
+                                    Log.d("img","check=false");
+                                    postFirebaseDatabase(true, date_text);
+                                }
                             }
                         }
                         @Override
@@ -159,6 +192,8 @@ public class NewRecord extends AppCompatActivity {
                             Toast.makeText(NewRecord.this,"Error", Toast.LENGTH_SHORT).show();
                         }
                     });
+
+                    finish();
                 }
             }
             public void setImgUrl(String url){
@@ -200,31 +235,27 @@ public class NewRecord extends AppCompatActivity {
 
     }
 
-    public void postFirebaseDatabase(boolean add){
+    public void postFirebaseDatabase(boolean add, String timestamp){
         Map<String,Object> childUpdates=new HashMap<>();
         Map<String,Object> postValues=null;
-        Date currentTime = Calendar.getInstance().getTime();
-        String date_text = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(currentTime);
         if(add){
-            FirebasePost post=new FirebasePost(0, title, symptom, "none", comment, date_text, "parent");
+            FirebasePost post=new FirebasePost(0, title, symptom, "none", comment, timestamp, "parent");
             postValues=post.toMap();
         }
 
-        childUpdates.put("/patient_list/"+patient_name+"/"+date_text,postValues);
+        childUpdates.put("/patient_list/"+patient_name+"/"+timestamp,postValues);
         mPostReference.updateChildren(childUpdates);
         //clearET();
     }
 
-    public void postFirebaseDatabase(boolean add, String img){
+    public void postFirebaseDatabase(boolean add, String img, String timestamp){
         Map<String,Object> childUpdates=new HashMap<>();
         Map<String,Object> postValues=null;
-        Date currentTime = Calendar.getInstance().getTime();
-        String date_text = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(currentTime);
         if(add){
-            FirebasePost post=new FirebasePost(0, title, symptom, img, comment, date_text, "parent");
+            FirebasePost post=new FirebasePost(0, title, symptom, img, comment, timestamp, "parent");
             postValues=post.toMap();
         }
-        childUpdates.put("/patient_list/"+patient_name+"/"+date_text,postValues);
+        childUpdates.put("/patient_list/"+patient_name+"/"+timestamp,postValues);
         mPostReference.updateChildren(childUpdates);
         clearET();
     }
@@ -232,12 +263,17 @@ public class NewRecord extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==PICK_IMAGE){
-            ImageView img = (ImageView) findViewById(R.id.imguploadbtn);
-            currentImageUri = data.getData();
-            check=true;
-            img.setImageURI(currentImageUri);
-            img.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        if (resultCode == Activity.RESULT_OK) {
+            if(requestCode==PICK_IMAGE){
+                ImageView img = (ImageView) findViewById(R.id.imguploadbtn);
+                currentImageUri = data.getData();
+                imagecheck =true;
+                img.setImageURI(currentImageUri);
+                img.setScaleType(ImageView.ScaleType.FIT_CENTER);
+            }
+        } else {
+            Log.d("ActivityResult","Nothing selected");
+            Toast.makeText(NewRecord.this,"No photo selected", Toast.LENGTH_SHORT).show();
         }
     }
 
