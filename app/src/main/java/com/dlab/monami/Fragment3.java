@@ -27,6 +27,11 @@ public class Fragment3 extends Fragment {
         Log.d("Fragment3","onCreateView");
         final View v = inflater.inflate(R.layout.fragment3, container, false);
 
+
+
+
+
+
         return v;
     }
 
