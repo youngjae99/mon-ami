@@ -23,10 +23,9 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.RecordView
     //어댑터에서 액티비티 액션을 가져올 때 context가 필요한데 어댑터에는 context가 없다.
     //선택한 액티비티에 대한 context를 가져올 때 필요하다.
 
-    public interface OnListItemSelectedInterface {
-        void onItemSelected(View v, int position);
-    }
-    private OnListItemSelectedInterface mListener;
+    //private ArrayList<ImageInfo> imageUrls;
+    //private OnItemClickListener onItemClickListener;
+    private ArrayList<ImageFormat> localPhotoList;
 
     public RecordAdapter(ArrayList<RecordItem> arrayList, Context context) {
         this.arrayList = arrayList;
@@ -73,9 +72,21 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.RecordView
                 @Override
                 public void onClick(View v){
                     int position = getAdapterPosition();
-                    Intent intent = new Intent(v.getContext(), RecordPopUp.class);
-                    intent.putExtra("position", position);
-                    v.getContext().startActivity(intent);
+                    Intent popupIntent = new Intent(v.getContext(), RecordPopUp.class);
+
+                    popupIntent.putExtra("time", arrayList.get(position).getTime());
+                    popupIntent.putExtra("writer", arrayList.get(position).getWriter());
+                    popupIntent.putExtra("title", arrayList.get(position).getTitle());
+                    popupIntent.putExtra("symptom", arrayList.get(position).getSymptom());
+                    popupIntent.putExtra("imgurl", arrayList.get(position).getImgUrl());
+                    popupIntent.putExtra("comment", arrayList.get(position).getComment());
+                    Log.d("FULL","image tile1="+arrayList.get(position).getTitle());
+                    context.startActivity(popupIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+
+//                    arrayList.get(position).
+//
+//                    intent.putExtra("position", position);
+//                    v.getContext().startActivity(intent);
 //                    mListener.onItemSelected(v, position);
                     Log.d("Contact", "clicked "+getAdapterPosition());
                     //팝업으로 최애맛집

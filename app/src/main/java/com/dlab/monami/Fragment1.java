@@ -70,7 +70,6 @@ public class Fragment1 extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.getChildrenCount() > 0) {
                     getFirebaseDatabase();
-
                 } else {
                     //user not found
                 }
@@ -107,11 +106,23 @@ public class Fragment1 extends Fragment {
                 for(DataSnapshot postSnapshot: dataSnapshot.getChildren()){
                     String key=postSnapshot.getKey();
                     FirebasePost get = postSnapshot.getValue(FirebasePost.class);
-                    String[] info={get.time, get.writer};
-                    RecordItem result= new RecordItem(info[0],info[1]); //수정 !!!
+                    String[] info={get.time, get.writer, get.title, get.symptom, get.img, get.comment};
+                    RecordItem result= new RecordItem(info[0],info[1],info[2],info[3],info[4],info[5]); //수정 !!!
+
+                    //list.add(result);
+                    if(info[4]!=null){  //행 사진파일이 있을 때 실
+                        //RecordItem recordItem = new RecordItem();
+
+                        result.setTime(info[0]);
+                        result.setWriter(info[1]);
+                        result.setTitle(info[2]);
+                        result.setSymptom(info[3]);
+                        result.setImgUrl(info[4]);
+                        result.setComment(info[5]);
+                        arrayList.add(result);
+                    }
 
 
-                    arrayList.add(result);
                     Log.d("getFirebaseDatabase","key: "+key);
                     Log.d("getFirebaseDatabase","info: "+info[0]+" "+info[1]);
                     Log.d("ListSize",String.valueOf(arrayList.size()));
