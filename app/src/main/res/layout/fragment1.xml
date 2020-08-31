@@ -41,6 +41,7 @@
                 app:layout_constraintStart_toEndOf="@+id/textView"
                 android:background="@android:color/transparent"
                 android:src="@drawable/ic_add_circle_outline_24_px" />
+
         </RelativeLayout>
 
         <androidx.recyclerview.widget.RecyclerView

@@ -4,7 +4,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:padding="10dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -29,6 +28,7 @@
                 android:layout_alignParentRight="true"
                 android:src="@drawable/profileimage_sample"/>
         </RelativeLayout>
+
         <!--
             <CalendarView
                 android:id="@+id/calendarView"
@@ -37,10 +37,28 @@
                 android:focusedMonthDateColor="@color/color1">
             </CalendarView>
         -->
-        <com.applandeo.materialcalendarview.CalendarView
-            android:id="@+id/calendarView"
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:background="@drawable/calendar_background"
+            >
+            <com.applandeo.materialcalendarview.CalendarView
+                android:id="@+id/calendarView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+
+                app:headerColor="@color/color2"
+                app:headerLabelColor="@color/color1"
+                app:todayLabelColor="@color/color1"
+                app:pagesColor="@color/color2"
+                app:abbreviationsBarColor="@color/color2"
+                />
+        </LinearLayout>
+
 
     </LinearLayout>
 </ScrollView>
