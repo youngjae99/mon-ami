@@ -38,6 +38,7 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".StartActivity"></activity>
         <activity android:name=".LoginActivity"
             android:noHistory="true"></activity>
         <activity android:name=".SignupActivity"

@@ -61,7 +61,7 @@ public class SplashActivity extends AppCompatActivity {
                     if(SaveSharedPreferences.getUserName(SplashActivity.this).length() == 0) {
                         // call Login Activity
                         Log.d("user","not saved");
-                        Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+                        Intent intent = new Intent(SplashActivity.this, StartActivity.class);
                         startActivity(intent);
                         finish();
                     } else {
