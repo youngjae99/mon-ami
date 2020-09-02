@@ -43,7 +43,7 @@ public class Fragment1 extends Fragment {
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
 
-    private ImageButton addBtn;
+    private ImageButton recordbtn1, recordbtn2;
 
     private View view;                                    // 갤러리 이미지 탐색
 
@@ -52,7 +52,8 @@ public class Fragment1 extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment1, container, false);
         Log.d("Fragment1","onCreateView");
-        addBtn = view.findViewById(R.id.addBtn);
+        recordbtn1 = view.findViewById(R.id.recordbtn1);
+        recordbtn2 = view.findViewById(R.id.recordbtn2);
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true); // 리사이클러뷰 기존성능 강화
         layoutManager = new LinearLayoutManager(getContext());
@@ -82,7 +83,7 @@ public class Fragment1 extends Fragment {
             }
         });
 
-        addBtn.setOnClickListener(new View.OnClickListener() {
+        recordbtn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), NewRecord.class);

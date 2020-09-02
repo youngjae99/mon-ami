@@ -83,12 +83,12 @@ public class SignupActivity extends AppCompatActivity {
         signupbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                signUpemail();
+                signUp();
             }
         });
     }
 
-    private void signUpemail(){
+    private void signUp(){
         final String email = emailET.getText().toString().trim();
         String password = passwordET.getText().toString().trim();
         String passwordCheck = passwordconfirmET.getText().toString().trim();
@@ -104,8 +104,8 @@ public class SignupActivity extends AppCompatActivity {
 //                                        loaderLayout.setVisibility(View.GONE);
                                 if (task.isSuccessful()) {
                                     FirebaseUser user = mAuth.getCurrentUser();
-                                    Toast.makeText(SignupActivity.this, "회원가입에 성공하였습니다.", Toast.LENGTH_SHORT).show();
-                                    Intent gotomain = new Intent(SignupActivity.this, MainActivity.class);
+                                    Toast.makeText(SignupActivity.this, "회원가입에 성공하였습니다. 로그인해주세요", Toast.LENGTH_SHORT).show();
+                                    Intent gotomain = new Intent(SignupActivity.this, LoginActivity.class);
                                     startActivity(gotomain);
                                 } else {
                                     if (task.getException() != null) {

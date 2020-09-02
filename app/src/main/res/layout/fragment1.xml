@@ -35,56 +35,54 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="10dp"
                 android:orientation="horizontal">
 
                 <LinearLayout
                     android:id="@+id/recordbtn1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:background="@drawable/loginbutton1">
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical">
                     <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/record"/>
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:padding="13dp"
+                        android:background="@drawable/ic_recordring"
+                        android:src="@drawable/pencil_270f"/>
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:layout_marginTop="7dp"
                         android:text="활동기록"
                         android:textColor="@color/black"
-                        android:textSize="15dp"
+                        android:textSize="11dp"
                         android:textStyle="bold" />
-                </LinearLayout>
+                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/recordbtn2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:background="@drawable/loginbutton1">
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical">
                     <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/record"/>
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:padding="13dp"
+                        android:background="@drawable/ic_recordring"
+                        android:src="@drawable/hospital_1f3e5"/>
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:layout_marginTop="7dp"
                         android:text="진료기록"
                         android:textColor="@color/black"
-                        android:textSize="15dp"
+                        android:textSize="11dp"
                         android:textStyle="bold" />
                 </LinearLayout>
-
-                <ImageButton
-                    android:id="@+id/addBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="16dp"
-                    android:layout_alignParentRight="true"
-                    app:layout_constraintStart_toEndOf="@+id/textView"
-                    android:background="@android:color/transparent"
-                    android:src="@drawable/ic_add_circle_outline_24_px" />
-
             </LinearLayout>
         </LinearLayout>
 
