@@ -160,7 +160,7 @@ public class StartActivity extends AppCompatActivity implements
             Intent loginIntent = new Intent(StartActivity.this, SignupActivity.class);
             startActivity(loginIntent);
         } else if (i == R.id.startlogin) {
-            Intent loginIntent = new Intent(StartActivity.this, LoginActivity.class);
+            Intent loginIntent = new Intent(StartActivity.this, MainActivity.class);
             startActivity(loginIntent);
         }
     }
