@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -12,8 +13,10 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.SignInMethodQueryResult;
 
 public class StartActivity extends AppCompatActivity implements
         View.OnClickListener {
@@ -78,8 +81,8 @@ public class StartActivity extends AppCompatActivity implements
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
             Log.d("googlelog",account.toString());
             // Signed in successfully, show authenticated UI.
+            googlelogin(account.getEmail(), account);
 
-            updateUI(account);
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
@@ -125,6 +128,70 @@ public class StartActivity extends AppCompatActivity implements
             mBinding.signOutAndDisconnect.setVisibility(View.GONE);
         }
     }*/
+
+    private void googlelogin(String email, GoogleSignInAccount account) {
+        Log.d(TAG, "google login ========");
+
+        mAuth = FirebaseAuth.getInstance();
+
+        mAuth.fetchSignInMethodsForEmail(email)
+                .addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
+
+                        boolean isNewUser = task.getResult().getSignInMethods().isEmpty();
+
+                        if (isNewUser) {
+                            Log.e("TAG", "Is New User!");
+                            updateUI(account);
+                        } else {
+                            Log.e("TAG", "Is Old User!");
+                            Intent gotomain = new Intent(StartActivity.this, MainActivity.class);
+                            startActivity(gotomain);
+                        }
+
+                    }
+                });
+
+        /*
+        mAuth.createUserWithEmailAndPassword(email, "01001010101")
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        //loaderLayout.setVisibility(View.GONE);
+                        if (!task.isSuccessful()) {
+                            try
+                            {
+                                throw task.getException();
+                            }
+                            // if user enters wrong email.
+                            catch (FirebaseAuthWeakPasswordException weakPassword)
+                            {
+                                Log.d(TAG, "onComplete: weak_password");
+                                // TODO: take your actions!
+                                updateUI(account);
+                            }
+                            // if user enters wrong password.
+                            catch (FirebaseAuthInvalidCredentialsException malformedEmail)
+                            {
+                                Log.d(TAG, "onComplete: malformed_email");
+                                // TODO: Take your action
+                            }
+                            catch (FirebaseAuthUserCollisionException existEmail)
+                            { // google Login
+                                Log.d(TAG, "onComplete: exist_email");
+                                Intent gotomain = new Intent(StartActivity.this, MainActivity.class);
+                                startActivity(gotomain);
+                            }
+                            catch (Exception e)
+                            {
+                                Log.d(TAG, "onComplete: " + e.getMessage());
+                                updateUI(account);
+                            }
+                        }
+                    }
+                });*/
+    }
 
     @Override
     public void onClick(View v) {
