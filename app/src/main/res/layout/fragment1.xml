@@ -48,8 +48,8 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:padding="13dp"
-                        android:background="@drawable/ic_recordring"
-                        android:src="@drawable/pencil_270f"/>
+                        android:background="@drawable/ic_recording"
+                        android:srcCompat="@drawable/pencil_270f"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -71,7 +71,7 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:padding="13dp"
-                        android:background="@drawable/ic_recordring"
+                        android:background="@drawable/ic_recording"
                         android:src="@drawable/hospital_1f3e5"/>
                     <TextView
                         android:layout_width="match_parent"
