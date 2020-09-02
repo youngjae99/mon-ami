@@ -5,7 +5,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,19 +18,15 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private DatabaseReference mPostReference;
-    String uid="", pw="";
+
     EditText usernameET,passwordET;
 
     ArrayList<String> data;
-    ArrayAdapter<String> arrayAdapter;
     private FirebaseAuth mAuth;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -44,7 +39,6 @@ public class LoginActivity extends AppCompatActivity {
         usernameET=(EditText) findViewById(R.id.userid);
         passwordET=(EditText) findViewById(R.id.password);
 
-        mPostReference= FirebaseDatabase.getInstance().getReference();
 
         if(getIntent().getExtras() != null){
             EditText username = (EditText)findViewById(R.id.userid);
@@ -60,12 +54,11 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        TextView signup = (TextView)findViewById(R.id.signup);
+        TextView signup = (TextView)findViewById(R.id.findidpw);
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent signupIntent = new Intent(LoginActivity.this, SignupActivity.class);
-                startActivity(signupIntent);
+                Toast.makeText(LoginActivity.this, "서비스 준비중입니다", Toast.LENGTH_SHORT).show();
             }
         });
     }

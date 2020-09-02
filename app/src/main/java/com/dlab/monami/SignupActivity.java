@@ -44,10 +44,16 @@ public class SignupActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
 
-    // -------------------------------------------------------
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+        String name="", email="";
+
+        Intent intent = getIntent();
+        if(intent.getExtras()!=null) {
+            name = intent.getExtras().getString("name", "");
+            email = intent.getExtras().getString("email", "");
+        }
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -67,6 +73,9 @@ public class SignupActivity extends AppCompatActivity {
         passwordconfirmET = findViewById(R.id.passwordETconfirm);
 
         mGoogleSignInAccount = getIntent().getParcelableExtra(GOOGLE_ACCOUNT);
+
+        if(email!=null) emailET.setText(email);
+        if(name!=null) nameET.setText(name);
 
         //setDataOnView();
 

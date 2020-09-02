@@ -43,38 +43,8 @@ public class StartActivity extends AppCompatActivity implements
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
         findViewById(R.id.emailStartButton).setOnClickListener(this);
-        findViewById(R.id.googleButton).setOnClickListener(this);
         findViewById(R.id.GoogleStartButton).setOnClickListener(this);
         findViewById(R.id.startlogin).setOnClickListener(this);
-
-
-        /*
-        TextView emailbutton = findViewById(R.id.emailStartButton);
-        emailbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("button","email start");
-                Toast.makeText(StartActivity.this,"가입 서비스 준비중입니다", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        TextView googlebutton = findViewById(R.id.GoogleStartButton);
-        googlebutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("button","google start");
-                Toast.makeText(StartActivity.this,"서비스 준비중입니다", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        TextView gotoLogin = findViewById(R.id.startlogin);
-        gotoLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });*/
-
     }
 
     @Override
@@ -108,6 +78,7 @@ public class StartActivity extends AppCompatActivity implements
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
             Log.d("googlelog",account.toString());
             // Signed in successfully, show authenticated UI.
+
             updateUI(account);
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
@@ -119,8 +90,12 @@ public class StartActivity extends AppCompatActivity implements
 
 
     private void updateUI(GoogleSignInAccount account) {
+        Log.d("updateUI",account.getEmail()+account.getGivenName()+account.getId());
         Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
-        intent.putExtra(SignupActivity.GOOGLE_ACCOUNT, account);
+        //intent.putExtra(SignupActivity.GOOGLE_ACCOUNT, account);
+        intent.putExtra("email",account.getEmail());
+        intent.putExtra("name",account.getGivenName());
+
         startActivityForResult(intent,1001);
         finish();
     }
@@ -154,13 +129,13 @@ public class StartActivity extends AppCompatActivity implements
     @Override
     public void onClick(View v) {
         int i = v.getId();
-        if (i == R.id.googleButton || i==R.id.GoogleStartButton) {
+        if (i==R.id.GoogleStartButton) {
             signIn();
         } else if (i == R.id.emailStartButton) {
             Intent loginIntent = new Intent(StartActivity.this, SignupActivity.class);
             startActivity(loginIntent);
         } else if (i == R.id.startlogin) {
-            Intent loginIntent = new Intent(StartActivity.this, MainActivity.class);
+            Intent loginIntent = new Intent(StartActivity.this, LoginActivity.class);
             startActivity(loginIntent);
         }
     }
