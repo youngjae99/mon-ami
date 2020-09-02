@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private Fragment1 fragment1;
     private Fragment2 fragment2;
     private Fragment3 fragment3;
+    private Fragment4 fragment4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         fragment1 = new Fragment1();
         fragment2 = new Fragment2();
         fragment3 = new Fragment3();
+        fragment4 = new Fragment4();
 
         tabLayout.setupWithViewPager(viewPager);
         /*
@@ -73,11 +75,13 @@ public class MainActivity extends AppCompatActivity {
         viewPagerAdapter.addFragment(fragment1, "");
         viewPagerAdapter.addFragment(fragment2, "");
         viewPagerAdapter.addFragment(fragment3, "");
+        viewPagerAdapter.addFragment(fragment4, "");
         viewPager.setAdapter(viewPagerAdapter);
 
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_tab1);
         tabLayout.getTabAt(1).setIcon(R.drawable.ic_tab2);
         tabLayout.getTabAt(2).setIcon(R.drawable.ic_tab3);
+        tabLayout.getTabAt(3).setIcon(R.drawable.ic_tab4);
     }
 
     private class ViewPagerAdapter extends FragmentPagerAdapter {
