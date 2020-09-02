@@ -3,14 +3,22 @@ package com.dlab.monami;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -24,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
 
     ArrayList<String> data;
     ArrayAdapter<String> arrayAdapter;
+    private FirebaseAuth mAuth;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -47,36 +56,7 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                uid=usernameET.getText().toString();
-                pw=passwordET.getText().toString();
-                /*
-                DatabaseReference idRef = FirebaseDatabase.getInstance().getReference("id_list");
-                DatabaseReference usernameRef = idRef.child(uid);
-                DatabaseReference passwordRef = usernameRef.child("signupPassword");
-
-                passwordRef.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        //Log.i(TAG, dataSnapshot.getValue(String.class));
-                        String getfullname=dataSnapshot.getValue(String.class);
-                        if(getfullname.equals(pw)==true){
-                            EditText username = (EditText)findViewById(R.id.userid);
-                            Intent loginIntent = new Intent(LoginActivity.this, MainActivity.class);
-                            loginIntent.putExtra("Username", username.getText().toString());
-                            startActivity(loginIntent);
-                        }else{
-                            Toast.makeText(LoginActivity.this,"Wrong Password", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        //Log.w(TAG, "onCancelled", databaseError.toException());
-                    }
-                });*/
-                Intent loginIntent = new Intent(LoginActivity.this, MainActivity.class);
-                //loginIntent.putExtra("Username", username.getText().toString());
-                SaveSharedPreferences.setUserName(LoginActivity.this, usernameET.getText().toString());
-                startActivity(loginIntent);
+                    login();
             }
         });
 
@@ -88,5 +68,36 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(signupIntent);
             }
         });
+    }
+
+    private void login() {
+        String email = usernameET.getText().toString();
+        String password = passwordET.getText().toString();
+        Log.d("LoginActivity", "id:" + email + " pw:" + password);
+        mAuth = FirebaseAuth.getInstance();
+
+        if (email.length() > 0 && password.length() > 0) {
+//            final RelativeLayout loaderLayout = findViewById(R.id.loaderLyaout);
+//            loaderLayout.setVisibility(View.VISIBLE);
+            mAuth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            //loaderLayout.setVisibility(View.GONE);
+                            if (task.isSuccessful()) {
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                Toast.makeText(LoginActivity.this, "로그인에 성공하였습니다", Toast.LENGTH_SHORT).show();
+                                Intent gotomain = new Intent(LoginActivity.this, MainActivity.class);
+                                startActivity(gotomain);
+                            } else {
+                                if (task.getException() != null) {
+                                    Toast.makeText(LoginActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }
+                    });
+        } else {
+            Toast.makeText(LoginActivity.this, "이메일 또는 비밀번호를 입력해 주세요.", Toast.LENGTH_SHORT).show();
+        }
     }
 }
