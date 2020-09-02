@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -94,12 +92,15 @@ public class NewRecord extends AppCompatActivity {
 
 
         // Text change listeners -------------------------------------------
+        /*
         titleET.addTextChangedListener(new TextWatcher() {
             public void afterTextChanged(Editable s) {
                 if(titleET.getText().toString().isEmpty()){
                     titleET.setBackgroundResource(R.drawable.titleborderbox);
+                    titleET.setPadding(18,0,0,0);
                 }else {
                     titleET.setBackgroundResource(R.drawable.titleborderbox_selected);
+                    titleET.setPadding(18,0,0,0);
                 }
             }
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -110,15 +111,17 @@ public class NewRecord extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 if(symptomET.getText().toString().isEmpty()){
                     symptomET.setBackgroundResource(R.drawable.titleborderbox);
+                    symptomET.setPadding(18,0,0,0);
                 }else {
                     symptomET.setBackgroundResource(R.drawable.titleborderbox_selected);
+                    symptomET.setPadding(18,0,0,0);
                 }
             }
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             public void onTextChanged(CharSequence s, int start, int before, int count) {}
         });
 
-
+*/
         // Save Button Click ------------------------------------
         TextView saveBtn = (TextView)findViewById(R.id.save_btn);
         saveBtn.setOnClickListener(new View.OnClickListener() {

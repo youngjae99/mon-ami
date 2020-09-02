@@ -17,14 +17,13 @@
 
     <ImageView
         android:layout_weight="1"
-        android:layout_marginTop="5dp"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:src="@drawable/record"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:padding="5dp"
+        android:src="@drawable/pencil_270f"
         android:layout_gravity="center_vertical"
-        >
+    />
 
-    </ImageView>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

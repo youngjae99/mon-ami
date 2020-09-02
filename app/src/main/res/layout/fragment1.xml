@@ -27,7 +27,7 @@
                 android:layout_marginStart="10dp"
                 android:text="오늘 기록할 내용"
                 android:textColor="@color/black"
-                android:textSize="25dp"
+                android:textSize="22dp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -45,8 +45,8 @@
                     android:layout_marginRight="10dp"
                     android:orientation="vertical">
                     <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
                         android:padding="13dp"
                         android:background="@drawable/ic_recording"
                         android:src="@drawable/pencil_270f"/>
@@ -57,7 +57,7 @@
                         android:layout_marginTop="7dp"
                         android:text="활동기록"
                         android:textColor="@color/black"
-                        android:textSize="11dp"
+                        android:textSize="15dp"
                         android:textStyle="bold" />
                  </LinearLayout>
 
@@ -68,8 +68,8 @@
                     android:layout_marginRight="10dp"
                     android:orientation="vertical">
                     <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
                         android:padding="13dp"
                         android:background="@drawable/ic_recording"
                         android:src="@drawable/hospital_1f3e5"/>
@@ -80,7 +80,7 @@
                         android:layout_marginTop="7dp"
                         android:text="진료기록"
                         android:textColor="@color/black"
-                        android:textSize="11dp"
+                        android:textSize="15dp"
                         android:textStyle="bold" />
                 </LinearLayout>
             </LinearLayout>

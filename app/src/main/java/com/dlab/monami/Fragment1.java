@@ -6,7 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -43,7 +43,7 @@ public class Fragment1 extends Fragment {
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
 
-    private ImageButton recordbtn1, recordbtn2;
+    private LinearLayout recordbtn1, recordbtn2;
 
     private View view;                                    // 갤러리 이미지 탐색
 
