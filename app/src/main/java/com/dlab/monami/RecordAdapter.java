@@ -6,13 +6,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
@@ -25,7 +22,6 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.RecordView
 
     //private ArrayList<ImageInfo> imageUrls;
     //private OnItemClickListener onItemClickListener;
-    private ArrayList<ImageFormat> localPhotoList;
 
     public RecordAdapter(ArrayList<RecordItem> arrayList, Context context) {
         this.arrayList = arrayList;

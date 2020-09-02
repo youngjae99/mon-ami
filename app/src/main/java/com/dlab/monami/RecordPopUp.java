@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
+import com.dlab.monami.R;
 //import com.github.chrisbanes.photoview.PhotoView;
 
 public class RecordPopUp extends Activity {
@@ -78,8 +79,8 @@ public class RecordPopUp extends Activity {
                     }
                 })
                 .thumbnail(0.1f)
-                .error(R.drawable.sample_img)
-                .into(iv_img);
+                .error(R.drawable.sample_img)   // 없을 때 뭘로 대체?
+                .into(iv_img);  // 어디에 뿌릴 건지
 
         tv_time.setText(time);
         tv_writer.setText(writer);

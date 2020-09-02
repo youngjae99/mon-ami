@@ -1,19 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/FRAGMENTB_TAG"
-    android:orientation="vertical">
-
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="20dp"
-        android:text="Fragment2"
-        android:textSize="20dp"
-        android:textColor="@color/color1" />
-</FrameLayout>
+        android:text="모아보기"
+        android:textStyle="bold"
+
+        android:textColor="@color/myDarkDeep"
+        android:textSize="20sp"
+        android:paddingTop="45dp"
+        android:paddingLeft="30dp"/>
+
+    <ImageView
+        android:id="@+id/filter"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:paddingLeft="30dp"
+        android:src="@drawable/sample_img"
+        />
+
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/TabTheme">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout2"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="bottom"
+            app:tabIconTint="@color/tab_color_selector"
+            app:tabTextColor="@color/unselected_color">
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="전체보기"/>
+            <!-- android:text="Contact" -->
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="북마크"/>
+            <!-- android:text="Gallery" -->
+
+
+
+        </com.google.android.material.tabs.TabLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        app:layout_anchorGravity="center"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
+
+
+
+</LinearLayout>
