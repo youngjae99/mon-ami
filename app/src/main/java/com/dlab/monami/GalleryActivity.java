@@ -1,8 +1,5 @@
 package com.dlab.monami;
 
-import androidx.fragment.app.Fragment;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,8 +9,8 @@ import android.widget.GridView;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -130,7 +127,7 @@ public class GalleryActivity extends Fragment {
                     String key=postSnapshot.getKey();
                     FirebasePost get = postSnapshot.getValue(FirebasePost.class);
                     String[] info={get.time, get.writer, get.title, get.symptom, get.img, get.comment};
-                    RecordItem result= new RecordItem(info[0],info[1],info[2],info[3],info[4],info[5]); //수정 !!!
+                    RecordItem result= new RecordItem(info[0],info[1],info[2],info[3],info[4],info[5],0); //수정 !!!
 
                     //list.add(result);
                     if(info[4]!=null){  // 사진파일이 있을 때 실행

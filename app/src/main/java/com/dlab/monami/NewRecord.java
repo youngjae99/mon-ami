@@ -66,6 +66,9 @@ public class NewRecord extends AppCompatActivity {
         setContentView(R.layout.newrecordscreen);
 
         patient_name="hyunwoo";
+        // 환자 이름
+        // 기록자 이름
+        // intent 가져오기
 
         backButton = (ImageButton) findViewById(R.id.backbtn);
         datePickButton = (ImageButton) findViewById(R.id.downbtn);

@@ -1,5 +1,6 @@
 package com.dlab.monami;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -134,6 +135,12 @@ public class StartActivity extends AppCompatActivity implements
 
         mAuth = FirebaseAuth.getInstance();
 
+        ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Signing in...");
+        progressDialog.setCancelable(true);
+        progressDialog.setProgressStyle(android.R.style.Widget_ProgressBar_Horizontal);
+
+        progressDialog.show();
         mAuth.fetchSignInMethodsForEmail(email)
                 .addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
                     @Override
@@ -142,9 +149,11 @@ public class StartActivity extends AppCompatActivity implements
                         boolean isNewUser = task.getResult().getSignInMethods().isEmpty();
 
                         if (isNewUser) {
+                            progressDialog.dismiss();
                             Log.e("TAG", "Is New User!");
                             updateUI(account);
                         } else {
+                            progressDialog.dismiss();
                             Log.e("TAG", "Is Old User!");
                             Intent gotomain = new Intent(StartActivity.this, MainActivity.class);
                             gotomain.putExtra("email",email);

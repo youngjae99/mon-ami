@@ -16,10 +16,11 @@
 
 
     <ImageView
+        android:id="@+id/itemicon"
         android:layout_weight="1"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:padding="5dp"
+        android:padding="10dp"
         android:src="@drawable/pencil_270f"
         android:layout_gravity="center_vertical"
     />
@@ -27,16 +28,16 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
         android:layout_weight="5"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/title"
+            android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="활동 기록"
             android:textStyle="bold"
-
             android:textColor="@color/myDarkDeep"
             android:textSize="20sp"
             android:paddingTop="6dp"
@@ -48,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
             android:layout_marginRight="4dp"
-            android:paddingTop="6dp"
+            android:paddingTop="3dp"
             android:paddingLeft="5dp"
             android:text="시간 입력"
             android:textColor="@color/myDarkDeep"
@@ -63,6 +64,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
+        android:layout_marginRight="10dp"
         android:background="@drawable/nicknamebox"
         android:text="현우맘"
         android:textColor="@color/myDarkDeep"

@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -45,8 +46,21 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.RecordView
 //                .load(arrayList.get(position).getProfile())
 //                .into(holder.iv_profile);
         int itemposition = position;
+        holder.tv_title.setText(arrayList.get(position).getTitle());
         holder.tv_time.setText(arrayList.get(position).getTime());
         holder.tv_writer.setText(arrayList.get(position).getWriter());
+
+        // 기록 Type 별로 아이콘 이미지 변경. 0:활동기록, 1:진료기록, 2:수면기록
+        if(arrayList.get(position).getType()==0){
+            holder.iconimage.setImageResource(R.drawable.pencil_270f);
+        }
+        else if(arrayList.get(position).getType()==1){
+            holder.iconimage.setImageResource(R.drawable.hospital_1f3e5);
+        }
+        else if(arrayList.get(position).getType()==2){
+            holder.iconimage.setImageResource(R.drawable.sleeping_face);
+        }
+
     }
 
     @Override
@@ -56,13 +70,17 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.RecordView
     }
 
     public class RecordViewHolder extends RecyclerView.ViewHolder {
+        TextView tv_title;
         TextView tv_time;
         TextView tv_writer;
+        ImageView iconimage;
 
         public RecordViewHolder(@NonNull View itemView) {
             super(itemView);
+            this.tv_title = itemView.findViewById(R.id.tv_title);
             this.tv_time = itemView.findViewById(R.id.tv_time);
             this.tv_writer = itemView.findViewById(R.id.tv_writer);
+            this.iconimage = itemView.findViewById(R.id.itemicon);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -76,6 +94,7 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.RecordView
                     popupIntent.putExtra("symptom", arrayList.get(position).getSymptom());
                     popupIntent.putExtra("imgurl", arrayList.get(position).getImgUrl());
                     popupIntent.putExtra("comment", arrayList.get(position).getComment());
+                    popupIntent.putExtra("type", arrayList.get(position).getType());
                     Log.d("FULL","image tile1="+arrayList.get(position).getTitle());
                     context.startActivity(popupIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
 

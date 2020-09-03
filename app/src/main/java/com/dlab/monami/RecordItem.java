@@ -9,9 +9,10 @@ class RecordItem {
     private String Symptom;
     private String ImgUrl;
     private String Comment;
+    private int Type;
 
     //, String _Title, String _Symptom, String ImgUrl, String Comment
-    public RecordItem(String _Time, String _Writer, String _Title, String _Symptom, String _ImgUrl, String _Comment)
+    public RecordItem(String _Time, String _Writer, String _Title, String _Symptom, String _ImgUrl, String _Comment, int _Type)
     {
         this.Time = _Time;
         this.Writer = _Writer;
@@ -19,8 +20,15 @@ class RecordItem {
         this.Symptom = _Symptom;
         this.ImgUrl = _ImgUrl;
         this.Comment = _Comment;
+        this.Type = _Type;
     }
 
+
+    public int getType() {
+        return Type;
+    }
+
+    public void setType(int type) { Type = type; }
 
     public void setTime(String time) {
         Time = time;

@@ -1,5 +1,6 @@
 package com.dlab.monami;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -40,6 +41,8 @@ public class LoginActivity extends AppCompatActivity {
         passwordET=(EditText) findViewById(R.id.password);
 
 
+
+
         if(getIntent().getExtras() != null){
             EditText username = (EditText)findViewById(R.id.userid);
             Intent signupIntent = getIntent();
@@ -69,9 +72,15 @@ public class LoginActivity extends AppCompatActivity {
         Log.d("LoginActivity", "id:" + email + " pw:" + password);
         mAuth = FirebaseAuth.getInstance();
 
+        ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Signing in...");
+        progressDialog.setCancelable(true);
+        progressDialog.setProgressStyle(android.R.style.Widget_ProgressBar_Horizontal);
+
         if (email.length() > 0 && password.length() > 0) {
 //            final RelativeLayout loaderLayout = findViewById(R.id.loaderLyaout);
 //            loaderLayout.setVisibility(View.VISIBLE);
+            progressDialog.show();
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
@@ -79,12 +88,14 @@ public class LoginActivity extends AppCompatActivity {
                             //loaderLayout.setVisibility(View.GONE);
                             if (task.isSuccessful()) {
                                 FirebaseUser user = mAuth.getCurrentUser();
-                                Toast.makeText(LoginActivity.this, "로그인에 성공하였습니다", Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(LoginActivity.this, "로그인에 성공하였습니다", Toast.LENGTH_SHORT).show();
                                 Intent gotomain = new Intent(LoginActivity.this, MainActivity.class);
                                 gotomain.putExtra("email", email);
+                                progressDialog.dismiss();
                                 startActivity(gotomain);
                             } else {
                                 if (task.getException() != null) {
+                                    progressDialog.dismiss();
                                     Toast.makeText(LoginActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
                                 }
                             }

@@ -1,5 +1,6 @@
 package com.dlab.monami;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -46,6 +48,7 @@ public class Fragment1 extends Fragment {
     private ImageButton side_btn;
 
     private LinearLayout recordbtn1, recordbtn2;
+    private ShimmerFrameLayout mShimmerViewContainer;
 
     private View view;                                    // 갤러리 이미지 탐색
 
@@ -61,6 +64,7 @@ public class Fragment1 extends Fragment {
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         arrayList = new ArrayList<>(); // User 객체를 담을 어레이 리스트 (어댑터쪽으로)
+        mShimmerViewContainer = view.findViewById(R.id.shimmer_view_container);
 
         mPostReference = FirebaseDatabase.getInstance().getReference();
         database = FirebaseDatabase.getInstance(); // 파이어베이스 데이터베이스 연동
@@ -68,12 +72,20 @@ public class Fragment1 extends Fragment {
 
         final Query query = databaseReference.orderByChild("time");
 
+        ProgressDialog progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setMessage("Signing in...");
+        progressDialog.setCancelable(true);
+        progressDialog.setProgressStyle(android.R.style.Widget_ProgressBar_Horizontal);
+
+        mShimmerViewContainer.startShimmer();
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.getChildrenCount() > 0) {
                     getFirebaseDatabase();
+                    mShimmerViewContainer.stopShimmer();
+                    mShimmerViewContainer.setVisibility(View.GONE);
                 } else {
                     //user not found
                 }
@@ -86,11 +98,18 @@ public class Fragment1 extends Fragment {
             }
         });
 
-        recordbtn1.setOnClickListener(new View.OnClickListener() {
+        recordbtn1.setOnClickListener(new View.OnClickListener() { // 활동기록
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), NewRecord.class);
                 getContext().startActivity(intent);
+            }
+        });
+
+        recordbtn2.setOnClickListener(new View.OnClickListener() { //진료기록
+            @Override
+            public void onClick(View view) {
+                progressDialog.show();
             }
         });
 
@@ -110,19 +129,19 @@ public class Fragment1 extends Fragment {
                 for(DataSnapshot postSnapshot: dataSnapshot.getChildren()){
                     String key=postSnapshot.getKey();
                     FirebasePost get = postSnapshot.getValue(FirebasePost.class);
-                    String[] info={get.time, get.writer, get.title, get.symptom, get.img, get.comment};
-                    RecordItem result= new RecordItem(info[0],info[1],info[2],info[3],info[4],info[5]); //수정 !!!
+                    String[] info={get.time, get.writer, get.title, get.symptom, get.img, get.comment, String.valueOf(get.type)};
+                    RecordItem result= new RecordItem(info[0],info[1],info[2],info[3],info[4],info[5],get.type);
 
                     //list.add(result);
                     if(info[4]!=null){  //행 사진파일이 있을 때 실
                         //RecordItem recordItem = new RecordItem();
-
                         result.setTime(info[0]);
                         result.setWriter(info[1]);
                         result.setTitle(info[2]);
                         result.setSymptom(info[3]);
                         result.setImgUrl(info[4]);
                         result.setComment(info[5]);
+                        result.setType(get.type);
                         arrayList.add(result);
                     }
 

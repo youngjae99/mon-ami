@@ -5,7 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class FirebasePost {
-    public Integer type;
+    public int type;
+    public boolean favorite;
     public String title;
     public String symptom;
     public String img;
@@ -15,14 +16,15 @@ public class FirebasePost {
 
 
 
-    public FirebasePost(Integer type, String title, String symptom, String img, String comment, String time, String writer){
-        this.type=type;
+    public FirebasePost(int type, String title, String symptom, String img, String comment, String time, String writer){
         this.title=title;
         this.symptom=symptom;
         this.img=img;
         this.comment=comment;
         this.time=time;
         this.writer=writer;
+        this.type=type;
+        this.favorite=false;
     }
 
     public FirebasePost(){}
@@ -35,6 +37,8 @@ public class FirebasePost {
         result.put("comment",comment);
         result.put("writer",writer);
         result.put("time",time);
+        result.put("type",type);
+        result.put("favorite",favorite);
         return result;
     }
 }

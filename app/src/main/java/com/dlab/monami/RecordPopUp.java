@@ -1,23 +1,19 @@
 package com.dlab.monami;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import android.graphics.drawable.Drawable;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
-import com.dlab.monami.R;
 //import com.github.chrisbanes.photoview.PhotoView;
 
 public class RecordPopUp extends Activity {
@@ -28,6 +24,8 @@ public class RecordPopUp extends Activity {
     private TextView tv_symptom;
     private ImageView iv_img;
     private TextView tv_comment;
+    private TextView tv_type;
+    private ImageView iconbox;
 
     String time;
     String writer;
@@ -35,7 +33,9 @@ public class RecordPopUp extends Activity {
     String symptom;
     String imgUrl;
     String comment;
+    int type;
 
+    Button btnDel, btnEdit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +50,10 @@ public class RecordPopUp extends Activity {
         tv_symptom = findViewById(R.id.symptom);
         iv_img = findViewById(R.id.img);
         tv_comment = findViewById(R.id.comment);
+        iconbox = findViewById(R.id.icon);
+        tv_type = findViewById(R.id.tv_type);
+        btnDel = findViewById(R.id.btn_delete);
+        btnEdit = findViewById(R.id.btn_edit);
 
         Intent intent = getIntent();
 
@@ -59,6 +63,7 @@ public class RecordPopUp extends Activity {
         symptom = intent.getExtras().getString("symptom");
         imgUrl = intent.getExtras().getString("imgurl");
         comment = intent.getExtras().getString("comment");
+        type = intent.getIntExtra("type",0);
 
         Log.d("popup", time);
         Log.d("popup", writer);
@@ -82,11 +87,37 @@ public class RecordPopUp extends Activity {
                 .error(R.drawable.sample_img)   // 없을 때 뭘로 대체?
                 .into(iv_img);  // 어디에 뿌릴 건지
 
+        if(type==0){
+            iconbox.setImageResource(R.drawable.pencil_270f);
+            tv_type.setText("활동 기록");
+        }
+        else if(type==1){
+            iconbox.setImageResource(R.drawable.hospital_1f3e5);
+            tv_type.setText("진료 기록");
+        }
+        else if(type==2){
+            iconbox.setImageResource(R.drawable.sleeping_face);
+            tv_type.setText("수면 기록");
+        }
+
         tv_time.setText(time);
         tv_writer.setText(writer);
         tv_title.setText(title);
         tv_symptom.setText(symptom);
         tv_comment.setText(comment);
+
+        btnEdit.setOnClickListener(new View.OnClickListener() { // Edit button click action
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        btnDel.setOnClickListener(new View.OnClickListener() { // Delete Button click action
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
     }
 }
