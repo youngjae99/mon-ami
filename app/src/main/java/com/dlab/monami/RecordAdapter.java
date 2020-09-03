@@ -47,8 +47,12 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.RecordView
 //                .into(holder.iv_profile);
         int itemposition = position;
         holder.tv_title.setText(arrayList.get(position).getTitle());
-        holder.tv_time.setText(arrayList.get(position).getTime());
         holder.tv_writer.setText(arrayList.get(position).getWriter());
+
+        String[] dateformat = arrayList.get(position).getTime().split(" ");
+        String[] dateformat1 = dateformat[0].split("-");
+        String[] timeformat = dateformat[1].split(":");
+        holder.tv_time.setText( dateformat1[1]+"월 "+dateformat1[2]+"일, "+timeformat[0]+":"+timeformat[1] );
 
         // 기록 Type 별로 아이콘 이미지 변경. 0:활동기록, 1:진료기록, 2:수면기록
         if(arrayList.get(position).getType()==0){

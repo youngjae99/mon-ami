@@ -9,6 +9,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
@@ -100,7 +101,12 @@ public class RecordPopUp extends Activity {
             tv_type.setText("수면 기록");
         }
 
-        tv_time.setText(time);
+
+        String[] dateformat = time.split(" ");
+        String[] dateformat1 = dateformat[0].split("-");
+        String[] timeformat = dateformat[1].split(":");
+        tv_time.setText( dateformat1[1]+"월 "+dateformat1[2]+"일, "+timeformat[0]+":"+timeformat[1] );
+        //tv_time.setText(time);
         tv_writer.setText(writer);
         tv_title.setText(title);
         tv_symptom.setText(symptom);
@@ -109,13 +115,13 @@ public class RecordPopUp extends Activity {
         btnEdit.setOnClickListener(new View.OnClickListener() { // Edit button click action
             @Override
             public void onClick(View view) {
-
+                Toast.makeText(RecordPopUp.this, "기능 개발중입니다", Toast.LENGTH_LONG).show();
             }
         });
         btnDel.setOnClickListener(new View.OnClickListener() { // Delete Button click action
             @Override
             public void onClick(View view) {
-
+                Toast.makeText(RecordPopUp.this, "기능 개발중입니다", Toast.LENGTH_LONG).show();
             }
         });
 

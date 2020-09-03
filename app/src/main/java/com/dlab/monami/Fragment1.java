@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -109,7 +110,7 @@ public class Fragment1 extends Fragment {
         recordbtn2.setOnClickListener(new View.OnClickListener() { //진료기록
             @Override
             public void onClick(View view) {
-                progressDialog.show();
+                Toast.makeText(getContext(), "기능 개발중입니다", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -144,8 +145,6 @@ public class Fragment1 extends Fragment {
                         result.setType(get.type);
                         arrayList.add(result);
                     }
-
-
                     Log.d("getFirebaseDatabase","key: "+key);
                     Log.d("getFirebaseDatabase","info: "+info[0]+" "+info[1]);
                     Log.d("ListSize",String.valueOf(arrayList.size()));
