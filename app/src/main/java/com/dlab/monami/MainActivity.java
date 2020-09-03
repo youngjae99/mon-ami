@@ -1,6 +1,8 @@
 package com.dlab.monami;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -8,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -25,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView btn_logout;
     private ImageView profile;
     private TextView txt_username;
+    private ImageButton side_btn;
     String user_name;
     String user_email;
 
@@ -32,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
     private Fragment2 fragment2;
     private Fragment3 fragment3;
     private Fragment4 fragment4;
+
+    private DrawerLayout drawerLayout;
+    private View drawerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +54,19 @@ public class MainActivity extends AppCompatActivity {
         fragment4 = new Fragment4();
 
         tabLayout.setupWithViewPager(viewPager);
+
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawerView = (View) findViewById(R.id.drawerView);
+
+        side_btn = findViewById(R.id.sideBtn);
+        side_btn.setOnClickListener(new ImageButton.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                drawerLayout.openDrawer(drawerView);
+            }
+        }) ;
+
+//        drawerLayout.setDrawerListener(listener);
         /*
         tabLayout.addOnTabSelectedListener(
                 new TabLayout.ViewPagerOnTabSelectedListener(viewPager) {

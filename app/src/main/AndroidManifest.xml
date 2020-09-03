@@ -21,13 +21,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BookmarkActivity"></activity>
+        <activity android:name=".SideBarActivity"></activity>
+        <activity android:name=".BookmarkActivity" />
         <activity android:name=".GalleryActivity" />
         <activity
             android:name=".RecordPopUp"
             android:theme="@android:style/Theme.Dialog" />
-        <activity android:name=".SelectActivity" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
         <activity android:name=".NewRecord" />
         <activity
             android:name=".SplashActivity"
