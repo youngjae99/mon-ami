@@ -34,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
     String user_name;
     String user_email;
 
+    private TextView userEmail_tv;
+    private TextView userNick_tv;
+
     private Fragment1 fragment1;
     private Fragment2 fragment2;
     private Fragment3 fragment3;
@@ -48,11 +51,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent intent = getIntent();
-        if(intent.getExtras()!=null) {
-            user_email = intent.getExtras().getString("email", "");
-        }
-        //이메일로 user_name 가져오는거 해야함
+
+        userNick_tv = findViewById(R.id.nickname);
+        userEmail_tv = findViewById(R.id.useremail);
 
         viewPager = findViewById(R.id.view_pager); //탭별 화면 보이는 view pager
         tabLayout = findViewById(R.id.tab_layout); //탭바
@@ -67,6 +68,14 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerView = (View) findViewById(R.id.drawerView);
 
+        Intent intent = getIntent();
+        if(intent.getExtras()!=null) {
+            user_email = intent.getExtras().getString("email", "");
+            user_name = intent.getExtras().getString("name", "");
+            userEmail_tv.setText(user_email);
+            userNick_tv.setText(user_name);
+        }
+
 //        final LayoutInflater factory = getLayoutInflater();
 //        frag1 = factory.inflate(R.layout.fragment1, null);
         side_btn = findViewById(R.id.sideBtn);
@@ -77,6 +86,8 @@ public class MainActivity extends AppCompatActivity {
                 drawerLayout.openDrawer(drawerView);
             }
         });
+
+
 
 //        drawerLayout.setDrawerListener(listener);
         /*

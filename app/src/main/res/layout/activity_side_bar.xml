@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="280dp"
     android:layout_height="match_parent"
     android:layout_gravity="start"
+    tools:context=".SideBarActivity"
     android:weightSum="3"
     android:id="@+id/drawerView"
     android:background="@color/white">
@@ -56,19 +58,19 @@
                 android:background="@drawable/border_template"
                 >
                 <TextView
+                    android:id="@+id/nickname"
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
-                    android:paddingRight="10dp"
                     android:textColor="@color/black"
 
                     android:text="닉네임"/>
                 <TextView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:text=" • "
-                    android:textColor="@color/black"
-                    android:paddingRight="10dp"/>
+                    android:text="  • "
+                    android:textColor="@color/black"/>
                 <TextView
+                    android:id="@+id/useremail"
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
                     android:textColor="@color/black"
@@ -162,6 +164,7 @@
             android:orientation="horizontal"
             android:layout_margin="10dp"
             android:id="@+id/aboutDlab"
+
             >
             <ImageView
                 android:layout_width="25dp"
@@ -169,6 +172,7 @@
                 android:paddingRight="10dp"
                 android:src="@drawable/ic_side4"/>
             <TextView
+                android:id="@+id/dlab_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"

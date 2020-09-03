@@ -245,7 +245,7 @@ public class NewRecord extends AppCompatActivity {
         Map<String,Object> childUpdates=new HashMap<>();
         Map<String,Object> postValues=null;
         if(add){
-            FirebasePost post=new FirebasePost(0, title, symptom, "none", comment, timestamp, "parent");
+            FirebasePost post=new FirebasePost(0, title, symptom, "none", comment, timestamp, "parent", false);
             postValues=post.toMap();
         }
 
@@ -258,7 +258,7 @@ public class NewRecord extends AppCompatActivity {
         Map<String,Object> childUpdates=new HashMap<>();
         Map<String,Object> postValues=null;
         if(add){
-            FirebasePost post=new FirebasePost(0, title, symptom, img, comment, timestamp, "parent");
+            FirebasePost post=new FirebasePost(0, title, symptom, img, comment, timestamp, "parent", false);
             postValues=post.toMap();
         }
         childUpdates.put("/patient_list/"+patient_name+"/"+timestamp,postValues);

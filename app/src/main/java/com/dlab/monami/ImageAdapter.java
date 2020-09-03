@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,6 +21,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
     private Context context;
     //private OnItemClickListener onItemClickListener;
     private ArrayList<ImageFormat> localPhotoList;
+    private ImageButton bookmark;
 
     public ImageAdapter(Context context, ArrayList<RecordItem> arrayList, ArrayList<ImageFormat> localPhotoList) {
         this.context = context;
@@ -42,7 +44,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
                 .load(arrayList.get(i).getImgUrl()) // 웹 이미지 로드
                 //.load(localPhotoList.get(i).getImgPath()) // 이미지 로드
                 //.load("/storage/emulated/0/Download/Domestic_Goose.jpg")
-                .error(R.drawable.sample_img)
+                .error(null)
                 .override(500,500) //해상도 최적화
                 .thumbnail(0.3f) //섬네일 최적화. 지정한 %만큼 미리 이미지를 가져와 보여주기
                 .centerCrop() // 중앙 크롭
@@ -63,6 +65,16 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
             super(view);
             img = view.findViewById(R.id.imageItem);
             //view.setOnCreateContextMenuListener(this);
+
+            bookmark = view.findViewById(R.id.bookmark);
+            bookmark.setOnClickListener(new View.OnClickListener(){
+                public void onClick(View v){
+                    int position = getAdapterPosition();
+
+                    bookmark.setImageDrawable(v.getResources().getDrawable(R.drawable.ic_bookmark2));
+                    Log.d("bookmarkTest","test");
+                }
+            });
 
             view.setOnClickListener(new View.OnClickListener(){
                 public void onClick(View v){

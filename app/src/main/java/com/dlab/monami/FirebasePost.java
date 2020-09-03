@@ -16,7 +16,7 @@ public class FirebasePost {
 
 
 
-    public FirebasePost(int type, String title, String symptom, String img, String comment, String time, String writer){
+    public FirebasePost(int type, String title, String symptom, String img, String comment, String time, String writer, boolean favorite){
         this.title=title;
         this.symptom=symptom;
         this.img=img;
