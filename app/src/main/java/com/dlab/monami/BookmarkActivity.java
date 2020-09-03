@@ -1,15 +1,12 @@
 package com.dlab.monami;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.dlab.monami.R;
+import androidx.fragment.app.Fragment;
 
 public class BookmarkActivity extends Fragment {
 
@@ -30,7 +27,6 @@ public class BookmarkActivity extends Fragment {
         // Inflate the layout for this fragment
         Log.d("BookmarkActivity","onCreateView");
         final View v = inflater.inflate(R.layout.activity_bookmark, container, false);
-
 
 
         return v;

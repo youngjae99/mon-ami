@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
@@ -42,6 +43,7 @@ public class Fragment1 extends Fragment {
     private ArrayList<RecordItem> arrayList;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
+    private ImageButton side_btn;
 
     private LinearLayout recordbtn1, recordbtn2;
 
@@ -65,6 +67,7 @@ public class Fragment1 extends Fragment {
         databaseReference = database.getReference().child("patient_list"); // DB 테이블 연결
 
         final Query query = databaseReference.orderByChild("time");
+
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

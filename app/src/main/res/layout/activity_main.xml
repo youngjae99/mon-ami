@@ -18,7 +18,7 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -34,9 +34,12 @@
                 >
                 <ImageButton
                     android:id="@+id/sideBtn"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="5dp"
+                    android:scaleType="centerInside"
                     android:src="@drawable/ic_side_btn"
+                    android:background="@android:color/transparent"
                     />
 
                 <ImageView
@@ -46,7 +49,6 @@
                     android:src="@drawable/monami_logo"/>
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
-
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.viewpager.widget.ViewPager

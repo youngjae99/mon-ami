@@ -8,27 +8,6 @@
     android:background="@color/white"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="모아보기"
-        android:textStyle="bold"
-
-        android:textColor="@color/myDarkDeep"
-        android:textSize="20sp"
-        android:paddingTop="45dp"
-        android:paddingLeft="30dp"/>
-
-    <ImageView
-        android:id="@+id/filter"
-        android:layout_width="60dp"
-        android:layout_height="30dp"
-        android:paddingLeft="30dp"
-        android:src="@drawable/sample_img"
-        />
-
-
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"

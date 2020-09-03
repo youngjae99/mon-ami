@@ -2,6 +2,7 @@ package com.dlab.monami;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
     private View drawerView;
+    private View frag1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +54,6 @@ public class MainActivity extends AppCompatActivity {
         }
         //이메일로 user_name 가져오는거 해야함
 
-
-
-
-
         viewPager = findViewById(R.id.view_pager); //탭별 화면 보이는 view pager
         tabLayout = findViewById(R.id.tab_layout); //탭바
 
@@ -65,19 +63,20 @@ public class MainActivity extends AppCompatActivity {
         fragment4 = new Fragment4();
 
         tabLayout.setupWithViewPager(viewPager);
-<<<<<<< HEAD
-=======
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerView = (View) findViewById(R.id.drawerView);
 
+//        final LayoutInflater factory = getLayoutInflater();
+//        frag1 = factory.inflate(R.layout.fragment1, null);
         side_btn = findViewById(R.id.sideBtn);
         side_btn.setOnClickListener(new ImageButton.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d("main","clicked drawerbutton");
                 drawerLayout.openDrawer(drawerView);
             }
-        }) ;
+        });
 
 //        drawerLayout.setDrawerListener(listener);
         /*
@@ -86,10 +85,9 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onTabSelected(TabLayout.Tab tab) {
                         super.onTabSelected(tab);
-//                        int tabIconColor = ContextCompat.getColor(context, R.color.black);
-//                        tab.getIcon().setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN);
+                        int tabIconColor = ContextCompat.getColor(context, R.color.black);
+                        tab.getIcon().setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN);
                     }
-
                     @Override
                     public void onTabUnselected(TabLayout.Tab tab) {
                         super.onTabUnselected(tab);
@@ -103,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
         );*/
->>>>>>> 34731aecc6d830aa646a7d1fbcded2f7f60d9d01
+
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), 0);
         viewPagerAdapter.addFragment(fragment1, "");
@@ -119,7 +117,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private class ViewPagerAdapter extends FragmentPagerAdapter {
-
         private List<Fragment> fragments = new ArrayList<>();
         private List<String> fragmentTitle = new ArrayList<>();
 /*
@@ -136,7 +133,8 @@ public class MainActivity extends AppCompatActivity {
                 default:
                     return null;
             }
-        }*/
+        }
+    */
         @NonNull
         @Override
         public Fragment getItem(int position) {
@@ -157,7 +155,9 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public Fragment getItem(int position) {
             return fragments.get(position);
-        }*/
+        }
+        */
+
 
         @Override
         public int getCount() {

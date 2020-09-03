@@ -12,22 +12,22 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:src="@drawable/monami_icon"/>
+<!--        <RelativeLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content">-->
+<!--            <ImageView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_margin="10dp"-->
+<!--                android:src="@drawable/monami_icon"/>-->
 
-            <ImageView
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_margin="10dp"
-                android:layout_alignParentRight="true"
-                android:src="@drawable/profileimage_sample"/>
-        </RelativeLayout>
+<!--            <ImageView-->
+<!--                android:layout_width="60dp"-->
+<!--                android:layout_height="60dp"-->
+<!--                android:layout_margin="10dp"-->
+<!--                android:layout_alignParentRight="true"-->
+<!--                android:src="@drawable/profileimage_sample"/>-->
+<!--        </RelativeLayout>-->
 
         <!--
             <CalendarView
