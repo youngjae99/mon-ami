@@ -148,7 +148,7 @@ public class NewRecord extends AppCompatActivity {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             if(dataSnapshot.getChildrenCount()>0){ // Username found
-                                Toast.makeText(NewRecord.this,"Restaurant already exists.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(NewRecord.this,"already exists.", Toast.LENGTH_SHORT).show();
                             }
                             else{ //Username not found
                                 Toast.makeText(NewRecord.this,"add success", Toast.LENGTH_SHORT).show();

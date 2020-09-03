@@ -147,6 +147,7 @@ public class StartActivity extends AppCompatActivity implements
                         } else {
                             Log.e("TAG", "Is Old User!");
                             Intent gotomain = new Intent(StartActivity.this, MainActivity.class);
+                            gotomain.putExtra("email",email);
                             startActivity(gotomain);
                         }
 

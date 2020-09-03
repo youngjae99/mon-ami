@@ -2,6 +2,7 @@ package com.dlab.monami;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
@@ -9,7 +10,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -20,13 +20,18 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SignupActivity extends AppCompatActivity {
-    private DatabaseReference mPostReference;
-    String uid="", pw="";
 
     ArrayList<String> data;
     ArrayAdapter<String> arrayAdapter;
@@ -35,6 +40,9 @@ public class SignupActivity extends AppCompatActivity {
 
     String TAG="signupActivity";
 
+    //Firebase ------------------------------
+    private DatabaseReference mPostReference;
+
     // google -------------------------------------------------------
     public static final String GOOGLE_ACCOUNT = "google_account";
     private TextView nameET, emailET, passwordET, passwordconfirmET;
@@ -42,12 +50,13 @@ public class SignupActivity extends AppCompatActivity {
     private GoogleSignInClient mGoogleSignInClient;
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth mAuth;
+    private String name="", email="";
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-        String name="", email="";
+        mPostReference= FirebaseDatabase.getInstance().getReference();
 
         Intent intent = getIntent();
         if(intent.getExtras()!=null) {
@@ -93,6 +102,10 @@ public class SignupActivity extends AppCompatActivity {
         String password = passwordET.getText().toString().trim();
         String passwordCheck = passwordconfirmET.getText().toString().trim();
 
+        DatabaseReference ref=FirebaseDatabase.getInstance().getReference().child("account_list");
+        Query query=ref.orderByChild("name").equalTo("david"); // ========================= TEMP NAME : david
+
+
         if (email.length() > 0 && password.length() > 0 && passwordCheck.length() > 0) {
             if (password.equals(passwordCheck)) {
 //                        final RelativeLayout loaderLayout = findViewById(R.id.loaderLyaout);
@@ -104,6 +117,25 @@ public class SignupActivity extends AppCompatActivity {
 //                                        loaderLayout.setVisibility(View.GONE);
                                 if (task.isSuccessful()) {
                                     FirebaseUser user = mAuth.getCurrentUser();
+
+                                    query.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                            if(dataSnapshot.getChildrenCount()>0){ // Username found
+                                                Toast.makeText(SignupActivity.this,"already exists.", Toast.LENGTH_SHORT).show();
+                                            }
+                                            else{ //Username not found
+                                                Toast.makeText(SignupActivity.this,"add success", Toast.LENGTH_SHORT).show();
+                                                postFirebaseAccountDatabase(true, email, name);
+                                            }
+                                        }
+                                        @Override
+                                        public void onCancelled(DatabaseError databaseError) {
+                                            Toast.makeText(SignupActivity.this,"Error", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+
+
                                     Toast.makeText(SignupActivity.this, "회원가입에 성공하였습니다. 로그인해주세요", Toast.LENGTH_SHORT).show();
                                     Intent gotomain = new Intent(SignupActivity.this, LoginActivity.class);
                                     startActivity(gotomain);
@@ -120,6 +152,19 @@ public class SignupActivity extends AppCompatActivity {
         } else {
             Toast.makeText(SignupActivity.this, "이메일 또는 비밀번호를 입력해 주세요.", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void postFirebaseAccountDatabase(boolean add, String email, String name){
+        Map<String,Object> childUpdates=new HashMap<>();
+        Map<String,Object> postValues=null;
+        if(add) {
+            FirebaseAccountPost post = new FirebaseAccountPost(email, name);
+            postValues = post.toMap();
+        }
+        Log.d("FirebasePost","added to account list : "+email+name);
+        childUpdates.put("/account_list/"+name,postValues);
+        mPostReference.updateChildren(childUpdates);
+        //clearET();
     }
 
     /*

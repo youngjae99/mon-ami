@@ -81,6 +81,7 @@ public class LoginActivity extends AppCompatActivity {
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 Toast.makeText(LoginActivity.this, "로그인에 성공하였습니다", Toast.LENGTH_SHORT).show();
                                 Intent gotomain = new Intent(LoginActivity.this, MainActivity.class);
+                                gotomain.putExtra("email", email);
                                 startActivity(gotomain);
                             } else {
                                 if (task.getException() != null) {
