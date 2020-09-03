@@ -12,13 +12,11 @@ public class BookmarkActivity extends Fragment {
 
     public BookmarkActivity() {
         // Required empty public constructor
-
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -27,8 +25,6 @@ public class BookmarkActivity extends Fragment {
         // Inflate the layout for this fragment
         Log.d("BookmarkActivity","onCreateView");
         final View v = inflater.inflate(R.layout.activity_bookmark, container, false);
-
-
         return v;
     }
 }
