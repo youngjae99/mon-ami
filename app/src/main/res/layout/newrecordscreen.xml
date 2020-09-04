@@ -136,7 +136,7 @@
                 android:paddingLeft="20dp"
                 android:hint="어떤 일이 있었나요?"
                 android:textColor="@color/color1"
-                android:inputType="textEmailAddress"
+                android:inputType="textMultiLine"
                 android:background="@drawable/dashborderbox"
                 />
         </LinearLayout>

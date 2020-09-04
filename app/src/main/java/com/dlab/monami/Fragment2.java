@@ -1,6 +1,5 @@
 package com.dlab.monami;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -130,7 +129,6 @@ public class Fragment2 extends Fragment {
     }
 
 
-
     public void getFirebaseDatabase(){
         final ValueEventListener postListener=new ValueEventListener() {
             @Override
@@ -144,7 +142,7 @@ public class Fragment2 extends Fragment {
                     RecordItem result= new RecordItem(info[0],info[1],info[2],info[3],info[4],info[5],get.type);
 
                     //list.add(result);
-                    if(info[4]!=null){  //행 사진파일이 있을 때 실
+                    if(!info[4].equals("none")){  //행 사진파일이 있을 때 실
                         //RecordItem recordItem = new RecordItem();
                         result.setTime(info[0]);
                         result.setWriter(info[1]);
@@ -155,7 +153,6 @@ public class Fragment2 extends Fragment {
                         result.setType(get.type);
                         arrayList.add(result);
                     }
-
 
                     Log.d("getFirebaseDatabase","key: "+key);
                     Log.d("getFirebaseDatabase","info: "+info[0]+" "+info[1]);
@@ -171,6 +168,6 @@ public class Fragment2 extends Fragment {
 
             }
         };
-        mPostReference.child("patient_list").child("hyunwoo").addValueEventListener(postListener);
+        mPostReference.child("patient_list").child(((MainActivity)getActivity()).user_name).addValueEventListener(postListener);
     }
 }
