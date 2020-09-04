@@ -158,6 +158,7 @@ public class StartActivity extends AppCompatActivity implements
                             Intent gotomain = new Intent(StartActivity.this, MainActivity.class);
                             gotomain.putExtra("email",email);
                             startActivity(gotomain);
+                            finish();
                         }
 
                     }

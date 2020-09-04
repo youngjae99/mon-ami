@@ -45,6 +45,7 @@ public class NewRecord extends AppCompatActivity {
     //Firebase ------------------------------
     private DatabaseReference mPostReference;
     static String patient_name="";
+    static String writer_name="";
     static String title="", symptom="", img="", comment="", recordtime="";
 
 
@@ -65,7 +66,10 @@ public class NewRecord extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.newrecordscreen);
 
-        patient_name="hyunwoo";
+        Intent intent = getIntent();
+        writer_name = intent.getExtras().getString("writer");
+        patient_name = intent.getExtras().getString("writer");
+
         // 환자 이름
         // 기록자 이름
         // intent 가져오기
@@ -245,7 +249,7 @@ public class NewRecord extends AppCompatActivity {
         Map<String,Object> childUpdates=new HashMap<>();
         Map<String,Object> postValues=null;
         if(add){
-            FirebasePost post=new FirebasePost(0, title, symptom, "none", comment, timestamp, "parent", false);
+            FirebasePost post=new FirebasePost(0, title, symptom, "none", comment, timestamp, writer_name, false);
             postValues=post.toMap();
         }
 
@@ -258,7 +262,7 @@ public class NewRecord extends AppCompatActivity {
         Map<String,Object> childUpdates=new HashMap<>();
         Map<String,Object> postValues=null;
         if(add){
-            FirebasePost post=new FirebasePost(0, title, symptom, img, comment, timestamp, "parent", false);
+            FirebasePost post=new FirebasePost(0, title, symptom, img, comment, timestamp, writer_name, false);
             postValues=post.toMap();
         }
         childUpdates.put("/patient_list/"+patient_name+"/"+timestamp,postValues);

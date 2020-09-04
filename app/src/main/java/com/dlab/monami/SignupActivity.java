@@ -92,6 +92,8 @@ public class SignupActivity extends AppCompatActivity {
         signupbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                name = nameET.getText().toString();
+                email = emailET.getText().toString();
                 signUp();
             }
         });
@@ -104,7 +106,6 @@ public class SignupActivity extends AppCompatActivity {
 
         DatabaseReference ref=FirebaseDatabase.getInstance().getReference().child("account_list");
         Query query=ref.orderByChild("name").equalTo("david"); // ========================= TEMP NAME : david
-
 
         if (email.length() > 0 && password.length() > 0 && passwordCheck.length() > 0) {
             if (password.equals(passwordCheck)) {
@@ -134,7 +135,6 @@ public class SignupActivity extends AppCompatActivity {
                                             Toast.makeText(SignupActivity.this,"Error", Toast.LENGTH_SHORT).show();
                                         }
                                     });
-
 
                                     Toast.makeText(SignupActivity.this, "회원가입에 성공하였습니다. 로그인해주세요", Toast.LENGTH_SHORT).show();
                                     Intent gotomain = new Intent(SignupActivity.this, LoginActivity.class);

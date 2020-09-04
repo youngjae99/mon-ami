@@ -1,14 +1,13 @@
 package com.dlab.monami;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class SideBarActivity extends AppCompatActivity {
 
@@ -20,7 +19,7 @@ public class SideBarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_side_bar);
 
-        Log.d("SideBarActivity", "오긴오냐");
+        Log.d("SideBarActivity", "gogo");
         LinearLayout linearLayout = findViewById(R.id.aboutDlab);
         TextView dlab_tv = findViewById(R.id.dlab_tv);
         linearLayout.setOnClickListener(new LinearLayout.OnClickListener() {

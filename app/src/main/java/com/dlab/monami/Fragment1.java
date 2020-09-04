@@ -84,7 +84,7 @@ public class Fragment1 extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.getChildrenCount() > 0) {
-                    getFirebaseDatabase();
+                    getFirebaseDatabase(((MainActivity)getActivity()).user_name);
                     mShimmerViewContainer.stopShimmer();
                     mShimmerViewContainer.setVisibility(View.GONE);
                 } else {
@@ -102,8 +102,12 @@ public class Fragment1 extends Fragment {
         recordbtn1.setOnClickListener(new View.OnClickListener() { // 활동기록
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), NewRecord.class);
-                getContext().startActivity(intent);
+                Log.e("userinfo",((MainActivity)getActivity()).user_name);
+                if(((MainActivity)getActivity()).user_name!=null) {
+                    Intent intent = new Intent(getContext(), NewRecord.class);
+                    intent.putExtra("writer",((MainActivity)getActivity()).user_name);
+                    getContext().startActivity(intent);
+                }
             }
         });
 
@@ -121,11 +125,13 @@ public class Fragment1 extends Fragment {
         return view;
     }
 
-    public void getFirebaseDatabase(){
+    public void getFirebaseDatabase(String name){
         final ValueEventListener postListener=new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Log.d("onDataChange","Data is Updated");
+                mShimmerViewContainer.setVisibility(View.VISIBLE);
+                mShimmerViewContainer.startShimmer();
                 arrayList.clear();
                 for(DataSnapshot postSnapshot: dataSnapshot.getChildren()){
                     String key=postSnapshot.getKey();
@@ -153,13 +159,17 @@ public class Fragment1 extends Fragment {
                 adapter.notifyDataSetChanged();
 
                 Collections.reverse(arrayList); // 내림차순 정렬
+                mShimmerViewContainer.stopShimmer();
+                mShimmerViewContainer.setVisibility(View.GONE);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         };
-        mPostReference.child("patient_list").child("hyunwoo").addValueEventListener(postListener);
+        //Log.d("name is ",((MainActivity)getActivity()).user_name);
+        Log.e("Fragment1 find list in ", name);
+        mPostReference.child("patient_list").child(name).addValueEventListener(postListener);
     }
 
 
