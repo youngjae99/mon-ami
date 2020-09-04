@@ -108,7 +108,6 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.RecordView
 //                    v.getContext().startActivity(intent);
 //                    mListener.onItemSelected(v, position);
                     Log.d("Contact", "clicked "+getAdapterPosition());
-                    //팝업으로 최애맛집
 
 
                 }

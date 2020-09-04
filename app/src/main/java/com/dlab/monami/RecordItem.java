@@ -41,7 +41,7 @@ class RecordItem {
     public void setWriter(String writer) { Writer = writer; }
 
     public String getWriter() {
-        return "하준맘";
+        return Writer;
     }
 
     public void setTitle(String title) {
