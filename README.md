@@ -5,6 +5,13 @@ Mobile Application that allows parents who are suffering from ASD to easily reco
 
 
 ## Problem
+1. Current caregiver-physician communication methods
+  - Different health care providers have different diagnoses of ASD based on the child's symptoms.
+  - Difficult to follow-up to daily life data outside of hospital treatment hours
+2. Current caregiver-therapist communication style
+  - Each uses a different app to send and receive information
+
+There is a need for **standardized and efficient information sharing** on problem behavior.
 
 
 ## Solution
